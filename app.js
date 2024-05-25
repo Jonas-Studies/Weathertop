@@ -30,6 +30,10 @@ app.get('/dashboard', (request, response) => {
 	response.render("dashboard");
 });
 
+app.get('/station', (request, response) => {
+	response.render("station");
+});
+
 app.listen(PORT, function() {
   console.log(`Weathertop running and listening on port ${PORT}`);
 });
