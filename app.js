@@ -19,8 +19,8 @@ app.use(express.static("public"));
 app.set("views", "views");
 app.set("view engine", "pug");
 
-app.get('/', (req, res) => {
-    res.send("Hello weathertop!");
+app.get('/', (request, response) => {
+	response.render("index");
 });
 
 app.listen(PORT, function() {
