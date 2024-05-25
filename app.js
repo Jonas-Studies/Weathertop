@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT;
 
+var path = require("path")
+
 /*
  *
  * Express setup
@@ -13,6 +15,7 @@ const PORT = process.env.PORT;
 
 app = express();
 
+app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'))
 //turn on serving static files (required for delivering css to client)
 app.use(express.static("public"));
 //configure template engine
