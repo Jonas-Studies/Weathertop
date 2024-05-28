@@ -15,9 +15,12 @@ var path = require("path")
 
 app = express();
 
+// Serve Bootstrap
 app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'))
-//turn on serving static files (required for delivering css to client)
+app.use('/bootstrap/icons', express.static(__dirname + '/node_modules/bootstrap-icons/icons'))
+
 app.use(express.static("public"));
+
 //configure template engine
 app.set("views", "views");
 app.set("view engine", "pug");
