@@ -1,13 +1,120 @@
-html(lang="en")
-	head
-		title Weathertop
-		meta(charset="utf-8")
-		meta(name="viewport" content="width=device-width, initial-scale=1")
-		link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
-	body
-		header(class="navbar navbar-expand-m bg-secondary-subtle")
-			div(class="container-fluid")
-				a(class="navbar-brand" href="/") Weathertop
-				ul(class="navbar-nav")
-					li(class="nav-item")
-						a(class="nav-link active" href="dashboard") Dashboard
+extends layouts/main.pug
+
+block content
+	section(class="container")
+		header
+			h1 Dashboard
+		section(class="container")
+			div(class="row row-cols-1 gap-3")
+				div(class="col")
+					div(class="card")
+						div(class="card-header")
+							div(class="row align-items-center")
+								div(class="col col-md-auto")
+									h2(class="card-title") Regensburg
+								div(class="col col-md-auto")
+									p(class="card-text") Lat: 49.01285
+								div(class="col col-md-auto")
+									p(class="card-text") Lon: 12.73920
+						div(class="card-body")
+							div(class="row row-cols-2 row-cols-md-4 g-2")
+								div(class="col")
+									div(class="card" data-bs-theme="light")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Wetter
+													p(class="card-text") 800
+												div(class="col col-md-auto justify-self-right")
+													img(class="text-primary" src="bootstrap/icons/sun.svg")
+								div(class="col")
+									div(class="card")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Temperatur
+													p(class="card-text") 32,5 Grad
+												div(class="col col-md-auto justify-self-right")
+													img(src="bootstrap/icons/thermometer-half.svg")
+								div(class="col")
+									div(class="card")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Wind
+													p(class="card-text") 15 bft
+												div(class="col col-md-auto justify-self-right")
+													img(src="bootstrap/icons/wind.svg")
+								div(class="col")
+									div(class="card")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Luftdruck
+													p(class="card-text") 90 hpa
+												div(class="col col-md-auto justify-self-right")
+													img(class="text-primary" src="bootstrap/icons/sun.svg")
+						div(class="card-footer")
+							div(class="row")
+								div(class="col col-md-auto")
+									a(href="station")
+										img(src="bootstrap/icons/pencil-square.svg" alt="Details")
+								div(class="col col-md-auto")
+									a(href="#")
+										img(src="bootstrap/icons/trash.svg" alt="Delete")
+				div(class="col")
+					div(class="card")
+						div(class="card-header")
+							div(class="row align-items-center")
+								div(class="col col-md-auto")
+									h2(class="card-title") Regensburg
+								div(class="col col-md-auto")
+									p(class="card-text") Lat: 49.01285
+								div(class="col col-md-auto")
+									p(class="card-text") Lon: 12.73920
+						div(class="card-body")
+							div(class="row row-cols-2 row-cols-md-4 g-2")
+								div(class="col")
+									div(class="card" data-bs-theme="light")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Wetter
+													p(class="card-text") 800
+												div(class="col col-md-auto justify-self-right")
+													img(class="text-primary" src="bootstrap/icons/sun.svg")
+								div(class="col")
+									div(class="card")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Temperatur
+													p(class="card-text") 32,5 Grad
+												div(class="col col-md-auto justify-self-right")
+													img(src="bootstrap/icons/thermometer-half.svg")
+								div(class="col")
+									div(class="card")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Wind
+													p(class="card-text") 15 bft
+												div(class="col col-md-auto justify-self-right")
+													img(src="bootstrap/icons/wind.svg")
+								div(class="col")
+									div(class="card")
+										div(class="card-body")
+											div(class="row align-items-center")
+												div(class="col")
+													h3(class="card-title") Luftdruck
+													p(class="card-text") 90 hpa
+												div(class="col col-md-auto justify-self-right")
+													img(class="text-primary" src="bootstrap/icons/sun.svg")
+						div(class="card-footer")
+							div(class="row")
+								div(class="col col-md-auto")
+									a(href="station")
+										img(src="bootstrap/icons/pencil-square.svg" alt="Details")
+								div(class="col col-md-auto")
+									a(href="#")
+										img(src="bootstrap/icons/trash.svg" alt="Delete")
