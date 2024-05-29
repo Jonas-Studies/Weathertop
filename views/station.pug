@@ -1,79 +1,12 @@
 extends layouts/main.pug
 
+include components/station.pug
+include components/readings.pug
+
 block content
 	section(class="container mt-4")
 		div(class="row row-cols-1 g-4")
 			div(class="col")
-				div(class="card")
-					div(class="card-header")
-						div(class="row align-items-center")
-							div(class="col col-md-auto")
-								h2(class="card-title") Regensburg
-							div(class="col col-md-auto")
-								p(class="card-text") Lat: 49.01285
-							div(class="col col-md-auto")
-								p(class="card-text") Lon: 12.73920
-					div(class="card-body")
-						div(class="row row-cols-2 row-cols-md-4 g-2")
-							div(class="col")
-								div(class="card" data-bs-theme="light")
-									div(class="card-body")
-										div(class="row align-items-center")
-											div(class="col")
-												h3(class="card-title") Wetter
-												p(class="card-text") 800
-											div(class="col col-md-auto justify-self-right")
-												img(class="text-primary" src="bootstrap/icons/sun.svg")
-							div(class="col")
-								div(class="card")
-									div(class="card-body")
-										div(class="row align-items-center")
-											div(class="col")
-												h3(class="card-title") Temperatur
-												p(class="card-text") 32,5 Grad
-											div(class="col col-md-auto justify-self-right")
-												img(src="bootstrap/icons/thermometer-half.svg")
-							div(class="col")
-								div(class="card")
-									div(class="card-body")
-										div(class="row align-items-center")
-											div(class="col")
-												h3(class="card-title") Wind
-												p(class="card-text") 15 bft
-											div(class="col col-md-auto justify-self-right")
-												img(src="bootstrap/icons/wind.svg")
-							div(class="col")
-								div(class="card")
-									div(class="card-body")
-										div(class="row align-items-center")
-											div(class="col")
-												h3(class="card-title") Luftdruck
-												p(class="card-text") 90 hpa
-											div(class="col col-md-auto justify-self-right")
-												img(class="text-primary" src="bootstrap/icons/sun.svg")
-					div(class="card-footer")
-						div(class="row")
-							div(class="col col-md-auto")
-								a(href="station")
-									img(src="bootstrap/icons/pencil-square.svg" alt="Details")
-							div(class="col col-md-auto")
-								a(href="#")
-									img(src="bootstrap/icons/trash.svg" alt="Delete")
+				+station("Regensburg")
 			div(class="col")
-				div(class="card")
-					div(class="card-header")
-						h2(class="card-title") Messungen
-					div(class="card-body")
-						table(class="table")
-							thead
-								tr
-									th(scope="col") Wetter
-									th(scope="col") Temperatur
-									th(scope="col") Wind
-									th(scope="col") Luftdruck
-							tbody
-								tr
-									td 800
-									td 32,5
-									td 15
-									td 90
+				+readings
