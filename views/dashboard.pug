@@ -1,8 +1,11 @@
 extends layouts/main.pug
 
+include components/navbar.pug
 include components/station.pug
 
 block content
+	header
+		+navbar
 	section(class="container mt-4")
 		header
 			h3 Dashboard
