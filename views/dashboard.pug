@@ -4,12 +4,10 @@ include components/station.pug
 
 block content
 	section(class="container mt-4")
-		div(class="card")
-			div(class="card-header")
-				h3 Dashboard
-
-			ul(class="list-group")
-				li(class="list-group-item")
-					+station("Regensburg")
-				li(class="list-group-item")
-					+station("Kehlheim")
+		header
+			h3 Dashboard
+		section
+			section(class="mt-3")
+				+station("Regensburg")
+			section(class="mt-3")
+				+station("Kehlheim")
