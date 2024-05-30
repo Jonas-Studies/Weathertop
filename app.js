@@ -15,9 +15,6 @@ var path = require("path")
 
 app = express();
 
-// Serve Bootstrap
-app.use('/bootstrap/icons', express.static(__dirname + '/node_modules/bootstrap-icons/icons'))
-
 app.use(express.static(path.join(__dirname, '/public')));
 
 //configure template engine
