@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 dotenv.config()
 const PORT = process.env.PORT;
 
-import mountRoutes from "./routes/index.js";
+import mountRoutes from "./routes/routes.js";
 
 const app = express()
 
