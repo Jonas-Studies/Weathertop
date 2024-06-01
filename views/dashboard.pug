@@ -9,8 +9,11 @@ block title
 block content
 	header
 		+navbar
-	section(class="container mt-4")
-		section(class="mt-3")
-			+station("Regensburg")
-		section(class="mt-3")
-			+station("Kehlheim")
+	section(class="container")
+		if weatherstations.length
+			each weatherstation in weatherstations 
+				div(class="mt-4")
+					+station( weatherstation.name )
+		
+		else
+			p No Weatherstations defined
