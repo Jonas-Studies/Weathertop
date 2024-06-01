@@ -1,38 +1,22 @@
-const express = require("express");
-const dotenv = require("dotenv");
+import express from "express"
+import dotenv from "dotenv"
 
 /* Reading global variables from config file */
-dotenv.config();
+dotenv.config()
 const PORT = process.env.PORT;
 
-var path = require("path")
+import mountRoutes from "./routes/index.js";
 
-/*
- *
- * Express setup
- *
-*/
-
-app = express();
-
-app.use(express.static(path.join(__dirname, '/public')));
+const app = express()
 
 //configure template engine
 app.set("views", "views");
 app.set("view engine", "pug");
 
-app.get('/', (request, response) => {
-	response.render("index");
-});
+mountRoutes(app)
 
-app.get('/dashboard', (request, response) => {
-	response.render("dashboard");
-});
-
-app.get('/station', (request, response) => {
-	response.render("station");
-});
+app.use(express.static("./public"));
 
 app.listen(PORT, function() {
-  console.log(`Weathertop running and listening on port ${PORT}`);
+  console.log(`Weathertop running and listening on port ${PORT}`)
 });
