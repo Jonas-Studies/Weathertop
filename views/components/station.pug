@@ -3,23 +3,23 @@ mixin station(input_weatherstation)
 		div(class="card-header")
 			div(class="row align-items-center")
 				div(class="col col-md-auto")
-					h4(class="card-title")= input_weatherstation.name
+					h4(class="card-title")= input_weatherstation.data.name
 				div(class="col col-md-auto")
 					p(class="card-text") Lat: 
-						span= input_weatherstation.latitude
+						span= input_weatherstation.data.latitude
 				div(class="col col-md-auto")
 					p(class="card-text") Lon: 
-						span= input_weatherstation.longitude
+						span= input_weatherstation.data.longitude
 		div(class="card-body")
 			div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
 				div(class="col")
-					+station_data("Wetter","800","icons/sun.svg")
+					+station_data("Wetter",input_weatherstation.latest_reading.weathercode,"icons/sun.svg")
 				div(class="col")
-					+station_data("Temperatur","32,5 Grad","icons/thermometer-half.svg")
+					+station_data("Temperatur",input_weatherstation.latest_reading.temperature,"icons/thermometer-half.svg")
 				div(class="col")
-					+station_data("Wind","15 bft","icons/wind.svg")
+					+station_data("Wind",input_weatherstation.latest_reading.windspeed_in_kmh,"icons/wind.svg")
 				div(class="col")
-					+station_data("Luftdruck","90 hpa","icons/sun.svg")
+					+station_data("Luftdruck",input_weatherstation.latest_reading.airpressure_in_hpa,"icons/sun.svg")
 		div(class="card-footer color-border-black")
 			div(class="row")
 				div(class="col col-md-auto")
