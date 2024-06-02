@@ -1,13 +1,15 @@
-mixin station(input_name)
+mixin station(input_weatherstation)
 	div(class="card")
 		div(class="card-header")
 			div(class="row align-items-center")
 				div(class="col col-md-auto")
-					h4(class="card-title")= input_name
+					h4(class="card-title")= input_weatherstation.name
 				div(class="col col-md-auto")
-					p(class="card-text") Lat: 49.01285
+					p(class="card-text") Lat: 
+						span= input_weatherstation.latitude
 				div(class="col col-md-auto")
-					p(class="card-text") Lon: 12.73920
+					p(class="card-text") Lon: 
+						span= input_weatherstation.longitude
 		div(class="card-body")
 			div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
 				div(class="col")
