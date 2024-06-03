@@ -14,6 +14,12 @@ export async function get_one_by_ID (ID) {
 			row.latitude,
 			row.longitude
 		)
+		
+		console.log("Loaded the weatherstation with the ID " + ID)
+		console.log(result)
+	}
+	else {
+		console.info("No weatherstation found for ID: " + ID)
 	}
 
 	return result
