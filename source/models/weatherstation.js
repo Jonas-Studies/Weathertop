@@ -1,5 +1,24 @@
 import * as database from '../database/index.js'
 
+export async function get_one_by_ID (ID) {
+	var result = get_empty()
+
+	const get_weatherstation = await database.query('Select * from weathertop.weatherstations weatherstation where weatherstation."ID" = $1::uuid', [ ID ])
+
+	if (get_weatherstation.rowCount > 0) {
+		const row = get_weatherstation.rows[0]
+
+		result = get_new(
+			row.ID,
+			row.name,
+			row.latitude,
+			row.longitude
+		)
+	}
+
+	return result
+}
+
 export async function get_many () {
 	var result = []
 
