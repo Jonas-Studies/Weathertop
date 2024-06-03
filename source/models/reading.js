@@ -24,7 +24,7 @@ export async function get_latest_by_weatherstationID (weatherstation_ID) {
 	return result
 }
 
-function get_empty () {
+export function get_empty () {
 	return get_new(
 		undefined,
 		undefined,

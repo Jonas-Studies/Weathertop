@@ -33,7 +33,7 @@ export async function get_many () {
 	return result;
 }
 
-function get_empty () {
+export function get_empty () {
 	return get_new(
 		undefined,
 		undefined,
