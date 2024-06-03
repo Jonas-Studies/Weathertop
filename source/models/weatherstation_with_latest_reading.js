@@ -10,7 +10,7 @@ export async function get_one_by_ID (weatherstationID) {
 		const latest_reading = await reading.get_latest_by_weatherstationID(weatherstationID)
 
 		if (latest_reading.ID != undefined) {
-			result = get_new(weatherstation, latest_reading)
+			result = get_new(weatherstation_data, latest_reading)
 		}
 		else {
 			console.info("No reading found for weatherstation " + weatherstation_data.toString())

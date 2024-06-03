@@ -1,4 +1,4 @@
-mixin readings
+mixin readings (input_readings)
 	div(class="card")
 		div(class="card-header")
 			div(class="card-title") Messungen
@@ -11,8 +11,9 @@ mixin readings
 						th(scope="col") Wind
 						th(scope="col") Luftdruck
 				tbody
-					tr
-						td 800
-						td 32,5
-						td 15
-						td 90
+					each reading in input_readings	
+						tr
+							td= reading.weathercode
+							td= reading.temperature
+							td= reading.windspeed
+							td= reading.airpressure
