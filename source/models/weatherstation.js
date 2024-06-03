@@ -36,6 +36,8 @@ export async function get_many () {
 		result.push(get_new(row.ID, row.name, row.latitude, row.longitude))
 	}
 
+	console.debug(result)
+
 	return result;
 }
 
