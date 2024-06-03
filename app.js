@@ -5,12 +5,12 @@ import dotenv from "dotenv"
 dotenv.config()
 const PORT = process.env.PORT;
 
-import mountRoutes from "./routes/routes.js";
+import mountRoutes from "./source/routes/routes.js";
 
 const app = express()
 
 //configure template engine
-app.set("views", "views");
+app.set("views", "./source/views");
 app.set("view engine", "pug");
 
 mountRoutes(app)
