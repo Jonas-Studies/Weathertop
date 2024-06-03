@@ -27,7 +27,7 @@ function get_new (ID, name, latitude, longitude) {
 	var new_url = undefined
 
 	if (ID != undefined) {
-		new_url = "/station/" + ID
+		new_url = "/weatherstation?id=" + ID
 	}
 
 	return {
