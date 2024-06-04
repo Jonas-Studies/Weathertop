@@ -21,11 +21,16 @@ router.get("/", async (request, response, next) => {
 )
 
 router.post("/insert_one", async (request, response, next) => {
-	console.info("Inserted one new weatherstation")
-	console.debug(request.body)
-
 	weatherstation_model.insert_one_new(request.body.input_name, request.body.input_latitude, request.body.input_longitude)
 	
+	response.redirect("/dashboard")
+})
+
+router.get("/delete_one_by_id", async (request, response, next) => {
+	const weatherstation_ID = request.query.id
+
+	weatherstation_model.delete_one_by_ID(weatherstation_ID)
+
 	response.redirect("/dashboard")
 })
 
