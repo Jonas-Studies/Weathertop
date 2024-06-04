@@ -1,37 +1,36 @@
 mixin station(input_weatherstation)
 	div(class="card")
 		div(class="card-header")
-			div(class="row align-items-center")
-				div(class="col col-md-auto")
-					h4(class="card-title")= input_weatherstation.data.name
-				div(class="col col-md-auto")
-					p(class="card-text") Lat: 
-						span= input_weatherstation.data.latitude
-				div(class="col col-md-auto")
-					p(class="card-text") Lon: 
-						span= input_weatherstation.data.longitude
+			+weatherstation_headline(input_weatherstation.data)
 		div(class="card-body")
-			div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
-				div(class="col")
-					+station_data("Wetter",input_weatherstation.latest_reading.weathercode,"sun")
-				div(class="col")
-					+station_data("Temperatur",input_weatherstation.latest_reading.temperature.toString() + input_weatherstation.latest_reading.unit_of_temperature,"thermometer-half")
-				div(class="col")
-					+station_data("Wind",input_weatherstation.latest_reading.windspeed.toString() + input_weatherstation.latest_reading.unit_of_windspeed,"wind")
-				div(class="col")
-					+station_data("Luftdruck",input_weatherstation.latest_reading.airpressure.toString() + input_weatherstation.latest_reading.unit_of_airpressure,"speedometer")
+			+weatherstation_reading(input_weatherstation.latest_reading)
 		div(class="card-footer color-border-black")
-			div(class="row")
-				div(class="col col-md-auto")
-					a(href=input_weatherstation.data.url)
-						svg(class="bi text-primary" width="20" height="20" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#pencil-square")
-				div(class="col col-md-auto")
-					a(href="#")
-						svg(class="bi text-primary" width="20" height="20" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#trash")
+			+weatherstation_links(input_weatherstation.data.url)
 
-mixin station_data(input_headline, input_values, input_icon)
+mixin weatherstation_headline(input_weatherstation_data)
+	div(class="row align-items-center")
+		div(class="col col-md-auto")
+			h4(class="card-title")= input_weatherstation_data.name
+		div(class="col col-md-auto")
+			p(class="card-text") Lat: 
+				span= input_weatherstation_data.latitude
+		div(class="col col-md-auto")
+			p(class="card-text") Lon: 
+				span= input_weatherstation_data.longitude
+
+mixin weatherstation_reading(input_reading)
+	div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
+		div(class="col")
+			+reading_value("Wetter",input_reading.weathercode,"sun")
+		div(class="col")
+			+reading_value("Temperatur",input_reading.temperature.toString() + input_reading.unit_of_temperature,"thermometer-half")
+		div(class="col")
+			+reading_value("Wind",input_reading.windspeed.toString() + input_reading.unit_of_windspeed,"wind")
+		div(class="col")
+			+reading_value("Luftdruck",input_reading.airpressure.toString() + input_reading.unit_of_airpressure,"speedometer")
+	
+
+mixin reading_value(input_headline, input_values, input_icon)
 	div(class="card")
 			div(class="card-body")
 				div(class="row align-items-center")
@@ -41,3 +40,14 @@ mixin station_data(input_headline, input_values, input_icon)
 					div(class="col col-md-auto justify-self-right")
 						svg(class="bi" width="20" height="20" fill="currentColor")
 							use(xlink:href="/icons/bootstrap-icons.svg#"+input_icon)
+
+mixin weatherstation_links (input_weatherstation_url)
+	div(class="row")
+		div(class="col col-md-auto")
+			a(href=input_weatherstation_url)
+				svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+					use(xlink:href="icons/bootstrap-icons.svg#pencil-square")
+		div(class="col col-md-auto")
+			a(href="#")
+				svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+					use(xlink:href="icons/bootstrap-icons.svg#trash")
