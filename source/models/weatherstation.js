@@ -41,6 +41,20 @@ export async function get_many () {
 	return result;
 }
 
+export async function insert_one_new (name, latitude, longitude) {
+	const new_weatherstation = get_new(undefined, name, latitude, longitude)
+
+	insert_one(new_weatherstation)
+}
+
+export async function insert_one ( weatherstation ) {
+	var result = undefined
+
+	const query = await database.query('Insert into weathertop.weatherstations ( "ID", "name", "latitude", "longitude" ) values ( gen_random_uuid(), $1::varChar, $2::float4, $3::float4)', [ weatherstation.name, weatherstation.latitude, weatherstation.longitude ] )
+
+	console.debug(query)
+}
+
 export function get_empty () {
 	return get_new(
 		undefined,

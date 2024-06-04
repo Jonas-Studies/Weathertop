@@ -1,6 +1,7 @@
 import express from "express"
 
 import * as weatherstation_with_latest_reading from "../models/weatherstation_with_latest_reading.js"
+import * as weatherstation_model from "../models/weatherstation.js"
 import * as readings from "../models/reading.js"
 
 const router = express.Router()
@@ -18,5 +19,14 @@ router.get("/", async (request, response, next) => {
         response.render("weatherstation", weatherstation)
     }
 )
+
+router.post("/insert_one", async (request, response, next) => {
+	console.info("Inserted one new weatherstation")
+	console.debug(request.body)
+
+	weatherstation_model.insert_one_new(request.body.input_name, request.body.input_latitude, request.body.input_longitude)
+	
+	response.redirect("/dashboard")
+})
 
 export default router
