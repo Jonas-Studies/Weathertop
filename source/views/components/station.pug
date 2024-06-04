@@ -2,8 +2,9 @@ mixin station(input_weatherstation)
 	div(class="card")
 		div(class="card-header")
 			+weatherstation_headline(input_weatherstation.data)
-		div(class="card-body")
-			+weatherstation_reading(input_weatherstation.latest_reading)
+		if input_weatherstation.latest_reading
+			div(class="card-body")
+				+weatherstation_reading(input_weatherstation.latest_reading)
 		div(class="card-footer color-border-black")
 			+weatherstation_links(input_weatherstation.data.url)
 

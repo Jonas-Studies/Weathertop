@@ -13,6 +13,8 @@ export async function get_one_by_ID (weatherstationID) {
 			result = get_new(weatherstation_data, latest_reading)
 		}
 		else {
+			result = get_new(weatherstation_data, undefined)
+
 			console.info("No reading found for weatherstation " + weatherstation_data.toString())
 		}
 	}
@@ -38,6 +40,8 @@ export async function get_many () {
 				result.push(get_new(get_weatherstations[index_of_weatherstation], latest_reading))
 			}
 			else {
+				result.push(get_new(get_weatherstations[index_of_weatherstation], undefined))
+
 				console.info("No reading found for weatherstation, weatherstationID: " + current_weatherstations_ID)
 			}
 		}
