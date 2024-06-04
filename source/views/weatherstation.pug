@@ -1,6 +1,7 @@
 extends layouts/main.pug
 
 include components/navbar.pug
+include components/create_reading_form.pug
 include components/station.pug
 include components/readings.pug
 
@@ -14,5 +15,7 @@ block content
 		div(class="row row-cols-1 g-4")
 			div(class="col")
 				+station( weatherstation )
+			div(class="col")
+				+create_reading_form()
 			div(class="col")
 				+readings( readings )

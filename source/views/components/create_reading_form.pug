@@ -1,0 +1,21 @@
+mixin create_reading_form ()
+	div(class="card")
+		form(method="POST" action="/reading/insert_one")
+			header(class="card-header")
+				h5 Hinzufügen Messung
+			section(class="card-body")
+				section(class="row")
+					section(class="col")
+						label(class="form-label" for="weathercode") Wetter
+						input(class="form-control" name="weathercode" tpye="number" required)
+					section(class="col")
+						label(class="form-label" for="temperature") Temperatur
+						input(class="form-control" name="temperature" tpye="number" required)
+					section(class="col")
+						label(class="form-label" for="windspeed") Wind
+						input(class="form-control" name="windspeed" tpye="number" required)
+					section(class="col")
+						label(class="form-label" for="airpressure") Luftdruck
+						input(class="form-control" name="airpressure" tpye="number" required)
+			footer(class="card-footer")
+				button(type="submit" class="btn btn-primary") Speichern
