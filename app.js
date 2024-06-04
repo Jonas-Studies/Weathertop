@@ -1,4 +1,5 @@
 import express from "express"
+import bodyparser from "body-parser"
 import dotenv from "dotenv"
 
 /* Reading global variables from config file */
@@ -9,9 +10,12 @@ import mountRoutes from "./source/routes/routes.js";
 
 const app = express()
 
+
 //configure template engine
 app.set("views", "./source/views");
 app.set("view engine", "pug");
+
+app.use(bodyparser.urlencoded( { extended: false } ))
 
 mountRoutes(app)
 
