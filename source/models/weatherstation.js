@@ -55,6 +55,12 @@ export async function insert_one ( weatherstation ) {
 	console.debug(query)
 }
 
+export async function delete_one_by_ID ( ID ) {
+	const query = await database.query('Delete from weathertop.weatherstations weatherstation where weatherstation."ID" = $1::uuid', [ ID ])
+
+	console.debug(query)
+}
+
 export function get_empty () {
 	return get_new(
 		undefined,
