@@ -1,6 +1,7 @@
 extends layouts/main.pug
 
 include components/navbar.pug
+include components/create_weatherstation_form.pug
 include components/station.pug
 
 block title
@@ -10,25 +11,8 @@ block content
 	header
 		+navbar
 	section(class="container")
-		div(class="card mt-4")
-			form(method="POST" action="/weatherstation/insert_one")
-				header(class="card-header")
-					h4(class="card-title") Hinzufügen Wetterstation
-				section(class="card-body")
-					section(class="row")
-						section(class="col")
-							label(class="form-label" for="input_name") Name
-							input(class="form-control" name="input_name" tpye="text" required)
-						section(class="col")
-							label(class="form-label" for="input_latitude") Latitude
-							input(class="form-control" name="input_latitude" tpye="number" placeholder="0.00000")
-						section(class="col")
-							label(class="form-label" for="input_longitude") Longitude
-							input(class="form-control" name="input_longitude" tpye="number" placeholder="0.00000")
-				footer(class="card-footer")
-					section(class="row")
-						section(class="col")
-							button(type="submit" class="btn btn-primary") Speichern
+		section(class="mt-4")
+			+create_weatherstation_form()
 		section
 			if weatherstations.length
 				each weatherstation in weatherstations 
