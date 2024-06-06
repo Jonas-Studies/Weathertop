@@ -1,20 +1,20 @@
 mixin create_weatherstation_form
 	div(class="card")
-		form(method="POST" action="/weatherstation/insert_one")
-			header(class="card-header")
-				h4(class="card-title") Hinzufügen Wetterstation
-			section(class="card-body")
-				section(class="row")
-					section(class="col")
-						label(class="form-label" for="input_name") Name
-						input(class="form-control" name="input_name" tpye="text" required)
-					section(class="col")
-						label(class="form-label" for="input_latitude") Latitude
-						input(class="form-control" name="input_latitude" tpye="number" placeholder="0.00000")
-					section(class="col")
-						label(class="form-label" for="input_longitude") Longitude
-						input(class="form-control" name="input_longitude" tpye="number" placeholder="0.00000")
-			footer(class="card-footer")
-				section(class="row")
-					section(class="col")
-						button(type="submit" class="btn btn-primary") Speichern
+		header(class="card-header")
+			h4(class="card-title") Hinzufügen Wetterstation
+		section(class="card-body")
+			section(class="row")
+				section(class="col")
+					label(class="form-label" for="create-weatherstation-input-name") Name
+					input(class="form-control" id="create-weatherstation-input-name" tpye="text")
+				section(class="col")
+					label(class="form-label" for="create-weatherstation-input-latitude" ) Latitude
+					input(class="form-control" id="create-weatherstation-input-latitude" tpye="number" placeholder="0.00000")
+				section(class="col")
+					label(class="form-label" for="create-weatherstation-input-latitude") Longitude
+					input(class="form-control" id="create-weatherstation-input-longitude" tpye="number" placeholder="0.00000")
+		footer(class="card-footer")
+			section(class="row")
+				section(class="col")
+					button(id="create-weatherstation-button" onclick="create_weatherstation()" class="btn btn-primary") Speichern
+	script(src="js/create_weatherstation_form.js")

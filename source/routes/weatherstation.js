@@ -21,9 +21,11 @@ router.get("/", async (request, response, next) => {
 )
 
 router.post("/insert_one", async (request, response, next) => {
-	weatherstation_model.insert_one_new(request.body.input_name, request.body.input_latitude, request.body.input_longitude)
+	console.debug(request.body)
+
+	weatherstation_model.insert_one_new(request.body.name, request.body.latitude, request.body.longitude)
 	
-	response.redirect("/dashboard")
+	response.sendStatus(200)
 })
 
 router.get("/delete_one_by_id", async (request, response, next) => {
