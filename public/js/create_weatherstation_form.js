@@ -2,24 +2,29 @@ function create_weatherstation () {
 	const name = get_weatherstationName_by_userinput()
 	const latitude = get_weatherstationLatitude_by_userinput()
 	const longitude = get_weatherstationLongitude_by_userinput()
-	
-	fetch("http://localhost:3000/weatherstation/insert_one",
-		{
-			method: "POST",
-			body: JSON.stringify(
-				{
-					name: name,
-					latitude: latitude,
-					longitude: longitude
+
+	if (name != undefined && latitude != undefined && longitude != undefined) {
+		fetch("http://localhost:3000/weatherstation/insert_one",
+			{
+				method: "POST",
+				body: JSON.stringify(
+					{
+						name: name,
+						latitude: latitude,
+						longitude: longitude
+					}
+				),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
 				}
-			),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8"
 			}
-		}
-	)
-		.then((response) => console.info("Reading created"))
-		.then((error) => console.error(error))
+		)
+			.then((response) => console.info("Reading created"))
+			.then((error) => console.error(error))
+	}
+	else {
+		console.error("Could not create weatherstation")
+	}
 }
 
 function get_weatherstationName_by_userinput () {
@@ -31,9 +36,15 @@ function get_weatherstationName_by_userinput () {
 	if (input != undefined) {
 		console.debug("Loaded " + ELEMENT_NAME + " from document")
 
-		result = input.value
+		if (typeof input.value === "string" && input !== "") {
+			result = input.value
 
-		console.info("Loaded the name " + result)
+			console.info("Loaded the name " + result)
+		}
+		else {
+			console.error("Invalid value for name")
+		}
+
 	}
 	else {
 		console.error("Could not load the " + ELEMENT_NAME + " from document")
@@ -51,9 +62,17 @@ function get_weatherstationLatitude_by_userinput () {
 	if (input != undefined) {
 		console.debug("Loaded " + ELEMENT_NAME + " from document")
 
-		result = Number(input.value)
+		const latitude = Number(input.value)
 
-		console.info("Loaded the name " + result)
+		if (isNaN(latitude) === false) {
+			result = latitude
+
+			console.info("Loaded the latitude " + latitude)
+		}
+		else {
+			console.error("Invalid value for latitude")
+		}
+
 	}
 	else {
 		console.error("Could not load the " + ELEMENT_NAME + " from document")
@@ -71,9 +90,18 @@ function get_weatherstationLongitude_by_userinput () {
 	if (input != undefined) {
 		console.debug("Loaded " + ELEMENT_NAME + " from document")
 
-		result = Number(input.value)
+		const longitude = Number(input.value)
 
-		console.info("Loaded the name " + result)
+		if (isNaN(longitude) === false) {
+			result = Number(input.value)
+
+			console.info("Loaded the name " + result)
+
+		}
+		else {
+			console.error("Invalid value for longitude")
+		}
+
 	}
 	else {
 		console.error("Could not load the " + ELEMENT_NAME + " from document")
