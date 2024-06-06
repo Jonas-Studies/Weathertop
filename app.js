@@ -15,7 +15,7 @@ const app = express()
 app.set("views", "./source/views");
 app.set("view engine", "pug");
 
-app.use(bodyparser.urlencoded( { extended: false } ))
+app.use(bodyparser.json())
 
 mountRoutes(app)
 
