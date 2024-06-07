@@ -55,6 +55,20 @@ export async function get_many_by_weatherstation_ID (weatherstation_ID) {
 	return result
 }
 
+export function insert_one_new (weatherstationID, weathercode, temperature, windspeed, airpressure) {
+	var new_reading = get_new(undefined, weatherstationID, weathercode, temperature, '°C', windspeed, 'km/h', airpressure, 'hpa')
+
+	insert_one(new_reading)
+}
+
+function insert_one (reading) {
+	const query = database.query('Insert into weathertop.readings ("ID", "weatherstation_ID", "weathercode", "temperature", "windspeed_in_kmh", "airpressure_in_hpa") values (gen_random_uuid(), $1::uuid, $2::integer, $3::float4, $4::float4, $5::float4)', [ reading.weatherstation_ID, reading.weathercode, reading.temperature, reading.windspeed, reading.airpressure ])
+}
+
+export function delete_one_by_ID (ID) {
+	const query = database.query('Delete from weathertop.readings reading where reading."ID" = $1::uuid', [ ID ])
+}
+
 export function get_empty () {
 	return get_new(
 		undefined,

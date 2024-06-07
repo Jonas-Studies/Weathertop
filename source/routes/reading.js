@@ -1,9 +1,18 @@
+import * as reading_model from "../models/reading.js"
 import express from "express"
 
 const router = express.Router()
 
 router.post("/insert_one", async (request, response, next) => {
 	console.debug(request.body)
+
+	reading_model.insert_one_new(
+		request.body.weatherstationID,
+		request.body.weathercode,
+		request.body.temperature,
+		request.body.windspeed,
+		request.body.airpressure
+	)
 
 	response.send(200)
     }
