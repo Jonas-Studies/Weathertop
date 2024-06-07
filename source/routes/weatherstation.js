@@ -24,7 +24,7 @@ router.get("/", async (request, response, next) => {
 router.post("/insert_one", async (request, response, next) => {
 	console.debug(request.body)
 
-	insert_new_weatherstation(request.body.name, request.body.latitude, request.body.longitude)
+	await insert_new_weatherstation(request.body.name, request.body.latitude, request.body.longitude)
 	
 	response.sendStatus(200)
 })
@@ -32,7 +32,7 @@ router.post("/insert_one", async (request, response, next) => {
 router.get("/delete_one_by_id", async (request, response, next) => {
 	const weatherstation_ID = request.query.id
 
-	delete_weatherstation_by_ID(weatherstation_ID)
+	await delete_weatherstation_by_ID(weatherstation_ID)
 
 	response.redirect("/dashboard")
 })
