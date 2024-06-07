@@ -1,34 +1,11 @@
-function init_create_reading_form () {
-	console.info("Initializing page")
-
-	set_createReading_button_listener()
-
-	console.info("Page initialized")
-}
-
-function set_createReading_button_listener () {
-	var create_reading_button = document.getElementById("create-reading-button")
-
-	if (create_reading_button) {
-		console.debug("Loaded create-reading-button")
-
-		create_reading_button.addEventListener("click", create_reading)
-
-		console.info("Event listener for create-reading-button created")
-	}
-	else {
-		console.error("Could not load create-reading-button")
-	}
-}
-
-function create_reading () {
+async function create_reading () {
 	const weatherstationID = get_weatherstationID_from_document()
 	const weathercode = get_weathercode_from_userinput()
 	const temperature = get_temperature_from_userinput()
 	const windspeed = get_windspeed_from_userinput()
 	const airpressure = get_airpressure_from_userinput()
 
-	fetch("http://localhost:3000/reading/insert_one",
+	await fetch("http://localhost:3000/reading/insert_one",
 		{
 			method: "POST",
 			body: JSON.stringify(
@@ -47,6 +24,8 @@ function create_reading () {
 	)
 		.then((response) => console.info("Reading created"))
 		.then((error) => console.error(error))
+	
+	location.reload()
 }
 
 function get_weathercode_from_userinput () {

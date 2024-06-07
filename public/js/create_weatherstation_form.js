@@ -1,10 +1,10 @@
-function create_weatherstation () {
+async function create_weatherstation () {
 	const name = get_weatherstationName_by_userinput()
 	const latitude = get_weatherstationLatitude_by_userinput()
 	const longitude = get_weatherstationLongitude_by_userinput()
 
 	if (name != undefined && latitude != undefined && longitude != undefined) {
-		fetch("http://localhost:3000/weatherstation/insert_one",
+		await fetch("http://localhost:3000/weatherstation/insert_one",
 			{
 				method: "POST",
 				body: JSON.stringify(
@@ -21,6 +21,8 @@ function create_weatherstation () {
 		)
 			.then((response) => console.info("Reading created"))
 			.then((error) => console.error(error))
+
+		location.reload()
 	}
 	else {
 		console.error("Could not create weatherstation")
