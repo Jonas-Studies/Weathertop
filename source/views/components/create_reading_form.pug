@@ -17,5 +17,5 @@ mixin create_reading_form ()
 					label(class="form-label" for="airpressure") Luftdruck
 					input(class="form-control" id="create-reading-input-airpressure" type="number")
 		footer(class="card-footer")
-			button(type="submit" id="create-reading-button" class="btn btn-primary") Speichern
-	script(src="js/create_reading_form.js" onload="init_create_reading_form()")
+			button(onclick="create_reading()" id="create-reading-button" class="btn btn-primary") Speichern
+	script(src="js/create_reading_form.js")
