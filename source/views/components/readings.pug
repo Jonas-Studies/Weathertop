@@ -10,6 +10,7 @@ mixin readings (input_readings)
 						th(scope="col") Temperatur
 						th(scope="col") Wind
 						th(scope="col") Luftdruck
+						th(scope="col")
 				tbody
 					each reading in input_readings	
 						tr
@@ -17,3 +18,7 @@ mixin readings (input_readings)
 							td= reading.temperature.value
 							td= reading.windspeed.value
 							td= reading.airpressure.value
+							td
+								a(href="http://localhost:3000/reading/delete_one_by_id?id="+reading.ID)
+									svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+										use(xlink:href="icons/bootstrap-icons.svg#trash")
