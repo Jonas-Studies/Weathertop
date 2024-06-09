@@ -1,0 +1,20 @@
+mixin registration-card
+	div(class="card")
+		div(class="card-header")
+			h4(class="card-title") Registrierung
+		div(class="card-body d-grid gap-3")
+			section(class="row")
+				section(class="col")
+					label(class="form-label") Benutzername
+					input(class="form-control" id="register-user-input-name" type="text")
+			section(class="row")
+				section(class="col")
+					label(class="form-label") Passwort
+					input(class="form-control" id="register-user-input-password" type="password")
+			section(class="row")
+				section(class="col")
+					label(class="form-label") Passwort wiederholen
+					input(class="form-control" id="register-user-input-repeat-password" type="password")
+			section(class="row")
+				section(class="col")
+					button(class="btn btn-primary") Registrieren
