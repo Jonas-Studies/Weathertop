@@ -1,4 +1,5 @@
 import express from "express"
+import session from "express-session"
 import bodyparser from "body-parser"
 import dotenv from "dotenv"
 
@@ -10,6 +11,7 @@ import mountRoutes from "./source/routes/routes.js";
 
 const app = express()
 
+app.use(session({secret: "Moin", resave: false, saveUninitialized: false}))
 
 //configure template engine
 app.set("views", "./source/views");
