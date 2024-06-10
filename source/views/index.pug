@@ -1,6 +1,8 @@
 extends layouts/main.pug
 
 include components/navbar.pug
+include components/registration_card.pug
+include components/login_card.pug
 
 block title
 	title WeatherTop
@@ -8,4 +10,8 @@ block title
 block content
 	header
 		+navbar
-	section(class="container" style="")
+	section(class="container mt-4")
+		if true
+			+login-card
+		else
+			+registration-card
