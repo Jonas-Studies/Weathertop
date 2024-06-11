@@ -4,7 +4,7 @@ async function create_weatherstation () {
 	const longitude = get_weatherstationLongitude_by_userinput()
 
 	if (name != undefined && latitude != undefined && longitude != undefined) {
-		await fetch("http://localhost:3000/weatherstation/insert_one",
+		await fetch("http://localhost:3000/weatherstation/insert_one_new",
 			{
 				method: "POST",
 				body: JSON.stringify(

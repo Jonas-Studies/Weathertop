@@ -1,4 +1,5 @@
-import * as reading_controller from './controllers/reading.js'
+import * as reading from './controllers/reading.js'
+import * as weatherstation from './controllers/weatherstation.js'
 
 import express from 'express'
 
@@ -9,8 +10,11 @@ router.get('/register', (request, response, next) => {
     }
 )
 
-router.post('/reading/insert_new_reading', reading_controller.insert_one_new)
+router.get('/weatherstation/', weatherstation.display_one_by_ID)
+router.post('/weatherstation/insert_one_new', weatherstation.insert_one_new)
+router.get('/weatherstation/delete_one_by_id', weatherstation.delete_one_by_ID)
 
-router.post('/reading/delete_one_by_ID', reading_controller.delete_one_by_ID)
+router.post('/reading/insert_new_reading', reading.insert_one_new)
+router.post('/reading/delete_one_by_id', reading.delete_one_by_ID)
 
 export default router
