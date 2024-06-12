@@ -5,7 +5,7 @@ async function create_reading () {
 	const windspeed = get_windspeed_from_userinput()
 	const airpressure = get_airpressure_from_userinput()
 
-	await fetch("http://localhost:3000/reading/insert_one",
+	await fetch("http://localhost:3000/reading/insert_one_new",
 		{
 			method: "POST",
 			body: JSON.stringify(
@@ -22,8 +22,6 @@ async function create_reading () {
 			}
 		}
 	)
-		.then((response) => console.info("Reading created"))
-		.then((error) => console.error(error))
 	
 	location.reload()
 }

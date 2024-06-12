@@ -7,6 +7,7 @@ import express from 'express'
 
 const router = express.Router()
 
+router.get('/', authentification.display_login_page)
 router.get('/register', authentification.display_registration_page) 
 router.get('/login', authentification.display_login_page)
 router.post('/login', authentification.create_session)
@@ -17,7 +18,7 @@ router.get('/weatherstation', weatherstation.display_one_by_ID)
 router.post('/weatherstation/insert_one_new', weatherstation.insert_one_new)
 router.get('/weatherstation/delete_one_by_id', weatherstation.delete_one_by_ID)
 
-router.post('/reading/insert_new_reading', reading.insert_one_new)
+router.post('/reading/insert_one_new', reading.insert_one_new)
 router.post('/reading/delete_one_by_id', reading.delete_one_by_ID)
 
 router.post('/user/insert_one_new', user.insert_one_new)
