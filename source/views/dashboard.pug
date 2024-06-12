@@ -5,19 +5,19 @@ include components/create_weatherstation_form.pug
 include components/station.pug
 
 block title
-	title WeatherTop - Dashboard
+	title= "WeatherTop - Dashboard"
 
 block content
 	header
 		+navbar( [ { name: "Dashboard", url: "/dashboard" }, { name: "Logout", url: "/logout" } ] )
 	section(class="container")
 		section(class="mt-4")
-			+create_weatherstation_form()
+			+ create_weatherstation_form()
 		section
 			if weatherstations.length
 				each weatherstation in weatherstations 
 					div(class="mt-4")
-						+station( weatherstation, false )
+						+ station( weatherstation, false )
 			
 			else
-				p No Weatherstations defined
+				div(class="alert alert-info mt-4" role="alert")= "No Weatherstations defined"
