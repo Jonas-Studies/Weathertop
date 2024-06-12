@@ -1,4 +1,4 @@
-import get_weatherstations from '../models/weatherstation_with_latest_reading/get_many.js'
+import get_weatherstations_by_user_ID from '../models/weatherstation_with_latest_reading/get_many_by_user_ID.js'
 import get_weatherstation_by_ID from '../models/weatherstation_with_latest_reading/get_one_by_weatherstation_ID.js'
 import get_readings_by_weatherstation_ID from '../models/reading/get_many_by_weatherstation_ID.js'
 import insert_new_weatherstation from '../models/weatherstation/insert_one_new.js'
@@ -9,7 +9,7 @@ export async function display_many (request, response, next) {
 		response.redirect('/login')
 	}
 	else {
-		const weatherstations = await get_weatherstations()
+		const weatherstations = await get_weatherstations_by_user_ID(request.session.key)
 
 		response.render('dashboard', { weatherstations: weatherstations } )
 	}
@@ -35,7 +35,7 @@ export async function display_one_by_ID (request, response, next) {
 
 export async function insert_one_new (request, response, next) {
 	if (request.session.key != undefined) {
-		await insert_new_weatherstation(request.body.name, request.body.latitude, request.body.longitude)
+		await insert_new_weatherstation(request.body.name, request.body.latitude, request.body.longitude, request.session.key)
 		
 		response.sendStatus(200)
 	}
