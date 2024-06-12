@@ -20,7 +20,7 @@ export async function create_session (request, response, next) {
 		if (user != undefined) {
 			request.session.key = user.ID
 
-			console.log(user.ID)
+			result = true
 		}
 	}
 

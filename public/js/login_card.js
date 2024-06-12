@@ -4,7 +4,7 @@ async function login_user () {
 
 	if (name != undefined && password != undefined) {
 		if (await is_username_existing(name) === true) {
-			if (await login(name, password)) === true {
+			if (await login(name, password) === true) {
 				window.location.href = '/dashboard'
 			}
 		}
@@ -87,7 +87,7 @@ async function login (username, password) {
 
 	if (response.status = 200) {
 		const data = await response.json()
-		
+		console.debug(data)	
 		result = data.login_successfull
 
 		if (data.login_successfull = true) {
