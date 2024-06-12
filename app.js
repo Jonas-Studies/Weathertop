@@ -11,7 +11,7 @@ import routes from "./source/routes.js"
 
 const app = express()
 
-app.use(session({secret: "Moin Meister", resave: false, saveUninitialized: false, cookie: { maxAge: 600000 }}))
+app.use(session({secret: "Moin Meister", resave: false, saveUninitialized: false, cookie: { maxAge: 6000000000, sameSite: "Lax" }}))
 
 //configure template engine
 app.set("views", "./source/views");
