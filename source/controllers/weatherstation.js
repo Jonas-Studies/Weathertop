@@ -3,6 +3,7 @@ import get_weatherstation_by_ID from '../models/weatherstation_with_latest_readi
 import get_readings_by_weatherstation_ID from '../models/reading/get_many_by_weatherstation_ID.js'
 import insert_new_weatherstation from '../models/weatherstation/insert_one_new.js'
 import delete_weatherstation_by_ID from '../models/weatherstation/delete_one_by_ID.js'
+import get_user_owns_weatherstation_by_weatherstation_ID from '../models/user_owns_weatherstations/get_one_by_weatherstation_ID.js'
 
 export async function display_many (request, response, next) {
 	if (request.session.key == undefined) {
@@ -19,14 +20,17 @@ export async function display_one_by_ID (request, response, next) {
 	if (request.session.key != undefined) {
 		const weatherstation_id = request.query.id
 
-		const weatherstation = {
-			weatherstation: await get_weatherstation_by_ID(weatherstation_id),
-			readings: await get_readings_by_weatherstation_ID(weatherstation_id)
+		if (await get_user_owns_weatherstation_by_weatherstation_ID(weatherstation_id, request.session.key) != undefined) {
+			const weatherstation = {
+				weatherstation: await get_weatherstation_by_ID(weatherstation_id),
+				readings: await get_readings_by_weatherstation_ID(weatherstation_id)
+			}
+
+			response.render("weatherstation", weatherstation)
 		}
-
-		console.debug(weatherstation)
-
-		response.render("weatherstation", weatherstation)
+		else {
+			response.sendStatus(400)
+		}
 	}
 	else {
 		response.redirect('/')
@@ -50,10 +54,12 @@ export async function delete_one_by_ID (request, response, next) {
 	if (request.session.key != undefined) {
 		const weatherstation_ID = request.body.weatherstation_ID
 
-		if (weatherstation_ID != undefined) {
-			await delete_weatherstation_by_ID(weatherstation_ID)
+		if (await get_user_owns_weatherstation_by_weatherstation_ID(weatherstation_ID, request.session.key) != undefined) {
+			if (weatherstation_ID != undefined) {
+				await delete_weatherstation_by_ID(weatherstation_ID)
 
-			result = 200
+				result = 200
+			}
 		}
 	}
 
