@@ -45,14 +45,17 @@ export async function insert_one_new (request, response, next) {
 }
 
 export async function delete_one_by_ID (request, response, next) {
+	var result = 400
+
 	if (request.session.key != undefined) {
-		const weatherstation_ID = request.query.id
+		const weatherstation_ID = request.body.weatherstation_ID
 
-		await delete_weatherstation_by_ID(weatherstation_ID)
+		if (weatherstation_ID != undefined) {
+			await delete_weatherstation_by_ID(weatherstation_ID)
 
-		response.redirect("/dashboard")
+			result = 200
+		}
 	}
-	else {
-		response.redirect('/')
-	}
+
+	response.sendStatus(result)
 }
