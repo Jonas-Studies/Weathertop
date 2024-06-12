@@ -9,7 +9,7 @@ block title
 
 block content
 	header
-		+navbar
+		+navbar( [ { name: "Dashboard", url: "/dashboard" }, { name: "Logout", url: "/logout" } ] )
 	section(class="container")
 		section(class="mt-4")
 			+create_weatherstation_form()
