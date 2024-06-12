@@ -86,7 +86,7 @@ function get_repeatedPassword_from_userinput () {
 
 async function fetch_registration_request (name, password) {
 	await fetch(
-		"http://localhost:3000/user/insert_one",
+		"http://localhost:3000/user/insert_one_new",
 		{
 			method: "POST",
 			body: JSON.stringify(

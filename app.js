@@ -7,12 +7,11 @@ import dotenv from "dotenv"
 dotenv.config()
 const PORT = process.env.PORT;
 
-import mountRoutes from "./source/routes/routes.js";
 import routes from "./source/routes.js"
 
 const app = express()
 
-app.use(session({secret: "Moin", resave: false, saveUninitialized: false, cookie: { maxAge: 60000 }}))
+app.use(session({secret: "Moin Meister", resave: false, saveUninitialized: false, cookie: { maxAge: 600000 }}))
 
 //configure template engine
 app.set("views", "./source/views");
@@ -21,8 +20,6 @@ app.set("view engine", "pug");
 app.use(bodyparser.json())
 
 app.use("/", routes)
-
-mountRoutes(app)
 
 app.use(express.static("./public"));
 

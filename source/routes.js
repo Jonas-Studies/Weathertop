@@ -1,3 +1,4 @@
+import * as authentification from './controllers/authentification.js'
 import * as reading from './controllers/reading.js'
 import * as weatherstation from './controllers/weatherstation.js'
 import * as user from './controllers/user.js'
@@ -6,12 +7,13 @@ import express from 'express'
 
 const router = express.Router()
 
-router.get('/register', (request, response, next) => {
-        response.render('register')
-    }
-)
+router.get('/register', authentification.display_registration_page) 
+router.get('/login', authentification.display_login_page)
+router.post('/login', authentification.create_session)
+router.post('/logout', authentification.destroy_session)
 
-router.get('/weatherstation/', weatherstation.display_one_by_ID)
+router.get('/dashboard', weatherstation.display_many)
+router.get('/weatherstation', weatherstation.display_one_by_ID)
 router.post('/weatherstation/insert_one_new', weatherstation.insert_one_new)
 router.get('/weatherstation/delete_one_by_id', weatherstation.delete_one_by_ID)
 
