@@ -20,15 +20,17 @@ export async function insert_one_new (request, response, next) {
 }
 
 export async function delete_one_by_ID (request, response, next) {
+	var result = 400
+
 	if (request.session.key != undefined) {
-		const reading_ID = request.query.id
-		const weatherstation_ID = await get_weatherstation_ID_by_reading_ID(reading_ID)
+		const reading_ID = request.body.reading_ID
 
-		await delete_reading_by_ID(reading_ID)
+		if (reading_ID != undefined) {
+			await delete_reading_by_ID(reading_ID)
 
-		response.redirect('/weatherstation?id=' + weatherstation_ID)
+			result = 200
+		}
 	}
-	else {
-		response.redirect('/')
-	}
+
+	response.sendStatus(result)
 }
