@@ -5,7 +5,7 @@ export default async function (ID) {
 
 	try {
 		const query = await database.query(
-			'Select "weatherstation_ID" from weathertop.readings where "ID" = $1::uuid',
+			'Select "weatherstation_ID" from weathertop.readings where "ID" = $1::integer',
 			[ ID ]
 		)
 

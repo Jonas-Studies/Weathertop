@@ -7,7 +7,7 @@ export default async function (weatherstation_ID) {
 
 	try {
 		const query = await database.query(
-			'Select * from weathertop.readings reading where reading."weatherstation_ID" = $1::uuid order by reading."created_on" desc fetch first row only',
+			'Select * from weathertop.readings reading where reading."weatherstation_ID" = $1::integer order by reading."created_on" desc fetch first row only',
 			[weatherstation_ID]
 		)
 

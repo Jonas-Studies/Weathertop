@@ -3,7 +3,7 @@ import * as database from '../../database/database.js'
 export default async function (ID) {
 	try {
 		await database.query(
-			'Delete from weathertop.weatherstations where "ID" = $1::uuid',
+			'Delete from weathertop.weatherstations where "ID" = $1::integer',
 			[ ID ]
 		)
 
