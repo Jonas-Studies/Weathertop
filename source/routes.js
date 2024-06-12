@@ -10,7 +10,7 @@ const router = express.Router()
 router.get('/register', authentification.display_registration_page) 
 router.get('/login', authentification.display_login_page)
 router.post('/login', authentification.create_session)
-router.post('/logout', authentification.destroy_session)
+router.get('/logout', authentification.destroy_session)
 
 router.get('/dashboard', weatherstation.display_many)
 router.get('/weatherstation', weatherstation.display_one_by_ID)
