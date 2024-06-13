@@ -14,7 +14,18 @@ export default async function (ID) {
 		if (query.rowCount === 1) {
 			const row = query.rows[0]
 
-			result = get_new_reading(row.ID, row.weatherstation_ID, row.weathercode, row.temperature, '°C', row.windspeed_in_kmh, 'km/h', row.airpressure_in_hpa, 'hpa', row.created_on)
+			result = get_new_reading(
+				row.ID,
+				row.weatherstation_ID, 
+				row.weathercode, 
+				row.temperature_in_degrees, 
+				'°C', 
+				row.windspeed_in_kmh, 
+				'km/h', 
+				row.airpressure_in_hpa, 
+				'hpa', 
+				row.created_on
+			)
 
 			console.info("Loaded weatherstation ID for reading ID")
 		}

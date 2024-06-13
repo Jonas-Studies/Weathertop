@@ -3,7 +3,7 @@ import * as database from '../../database/database.js'
 export default async function (reading) {
 	try {
 		const query = await database.query(
-			'Insert into weathertop.readings ("weatherstation_ID", "weathercode", "temperature", "windspeed_in_kmh", "airpressure_in_hpa") values ($1::integer, $2::integer, $3::float4, $4::float4, $5::float4)',
+			'Insert into weathertop.readings ("weatherstation_ID", "weathercode", "temperature_in_degrees", "windspeed_in_kmh", "airpressure_in_hpa") values ($1::integer, $2::integer, $3::float4, $4::float4, $5::float4)',
 			[ reading.weatherstation_ID, reading.weathercode, reading.temperature.value, reading.windspeed.value, reading.airpressure.value ]
 		)
 		

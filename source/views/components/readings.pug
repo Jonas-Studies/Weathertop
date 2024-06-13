@@ -16,7 +16,7 @@ mixin readings (input_readings)
 					each reading in input_readings	
 						tr
 							td= reading.created_on.toUTCString()
-							td= reading.weathercode
+							td= reading.weathercode.text
 							td= reading.temperature.value
 							td= reading.windspeed.value
 							td= reading.airpressure.value

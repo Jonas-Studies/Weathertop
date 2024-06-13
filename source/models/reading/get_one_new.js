@@ -1,8 +1,11 @@
 export default function (ID, weatherstation_ID, weathercode, temperature, unit_of_temperature, windspeed, unit_of_windspeed, airpressure, unit_of_airpressure, created_on) {
-	return {
+	const result = {
 		ID: ID,
 		weatherstation_ID: weatherstation_ID,
-		weathercode: weathercode,
+		weathercode: {
+			value: weathercode,
+			text: 'Franz'
+		},
 		temperature: {
 			value: temperature,
 			unit: unit_of_temperature
@@ -17,4 +20,9 @@ export default function (ID, weatherstation_ID, weathercode, temperature, unit_o
 		},
 		created_on: created_on
 	}
+
+	console.info("Loaded reading")
+	console.debug(result)
+
+	return result
 }
