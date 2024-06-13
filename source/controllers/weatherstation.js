@@ -4,6 +4,7 @@ import get_readings_by_weatherstation_ID from '../models/reading/get_many_by_wea
 import insert_new_weatherstation from '../models/weatherstation/insert_one_new.js'
 import delete_weatherstation_by_ID from '../models/weatherstation/delete_one_by_ID.js'
 import get_user_owns_weatherstation_by_weatherstation_ID from '../models/user_owns_weatherstations/get_one_by_weatherstation_ID.js'
+import get_weathercodes from '../models/weathercode/get_many.js'
 
 export async function display_many (request, response, next) {
 	if (request.session.key == undefined) {
@@ -21,12 +22,14 @@ export async function display_one_by_ID (request, response, next) {
 		const weatherstation_id = request.query.id
 
 		if (await get_user_owns_weatherstation_by_weatherstation_ID(weatherstation_id, request.session.key) != undefined) {
-			const weatherstation = {
-				weatherstation: await get_weatherstation_by_ID(weatherstation_id),
-				readings: await get_readings_by_weatherstation_ID(weatherstation_id)
-			}
+			const weatherstation = await get_weatherstation_by_ID(weatherstation_id)
+			const readings = await get_readings_by_weatherstation_ID(weatherstation_id)
 
-			response.render("weatherstation", weatherstation)
+			const weathercodes = get_weathercodes()
+
+			console.debug(weathercodes)
+
+			response.render("weatherstation", { weatherstation: weatherstation, readings: readings, weathercodes: weathercodes })
 		}
 		else {
 			response.sendStatus(400)

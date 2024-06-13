@@ -16,7 +16,7 @@ block content
 			div(class="col")
 				+station( weatherstation, true )
 			div(class="col")
-				+create_reading_form()
+				+create_reading_form(weathercodes)
 			div(class="col")
 				+readings( readings )
 	div(id="weatherstation-ID" class="invisible")= weatherstation.data.ID

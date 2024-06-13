@@ -1,4 +1,4 @@
-mixin create_reading_form ()
+mixin create_reading_form (weathercodes)
 	div(class="card")
 		header(class="card-header")
 			h5 Hinzufügen Messung
@@ -6,7 +6,9 @@ mixin create_reading_form ()
 			section(class="row")
 				section(class="col")
 					label(class="form-label" for="weathercode") Wetter
-					input(class="form-control" id="create-reading-input-weathercode" type="number")
+					select(class="form-select" id="create-reading-selected-weathercode")
+						each weathercode in weathercodes
+							option(value=weathercode.key)= weathercode.name
 				section(class="col")
 					label(class="form-label" for="temperature") Temperatur
 					input(class="form-control" id="create-reading-input-temperature" type="number")

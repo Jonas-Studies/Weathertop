@@ -29,7 +29,8 @@ async function create_reading () {
 function get_weathercode_from_userinput () {
 	var result = undefined
 
-	const weathercode_input = document.getElementById("create-reading-input-weathercode")
+	const weathercode_input = document.getElementById("create-reading-selected-weathercode")
+	console.debug(weathercode_input)
 
 	if (weathercode_input) {
 		console.debug("Loaded create-reading-input-weathercode")
