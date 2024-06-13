@@ -21,25 +21,45 @@ mixin weatherstation_details(reading)
 	div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
 		div(class="col")
 			div(class="card")
-				div(class="card-body")
-					h5(class="card-title")= "Wetter"
-					p(class="card-text")= reading.weathercode.name
+				div(class="row g-0")
+					div(class="col col-md-auto ms-2 align-self-center")
+						svg(class="bi translate" width="40" height="40" fill="currentColor")
+							use(xlink:href="icons/bootstrap-icons.svg#cloud-lightning")
+					div(class="col")
+						div(class="card-body")
+							h5(class="card-title")= "Wetter"
+							p(class="card-text")= reading.weathercode.name
 		div(class="col")
 			div(class="card")
-				div(class="card-body")
-					h5(class="card-title")= "Temperatur"
-					p(class="card-text")= reading.temperature.value.toString() + reading.temperature.unit
+				div(class="row g-0")
+					div(class="col col-md-auto ms-2 align-self-center")
+						svg(class="bi translate" width="40" height="40" fill="currentColor")
+							use(xlink:href="icons/bootstrap-icons.svg#" + reading.temperature.icon_name)
+					div(class="col")
+						div(class="card-body")
+							h5(class="card-title")= "Temperatur"
+							p(class="card-text")= reading.temperature.value.toString() + reading.temperature.unit
 					
 		div(class="col")
 			div(class="card")
-				div(class="card-body")
-					h5(class="card-title")= "Wind"
-					p(class="card-text")= reading.windspeed.value.toString() + reading.windspeed.unit
+				div(class="row g-0")
+					div(class="col col-md-auto ms-2 align-self-center")
+						svg(class="bi translate" width="40" height="40" fill="currentColor")
+							use(xlink:href="icons/bootstrap-icons.svg#wind")
+					div(class="col")
+						div(class="card-body")
+							h5(class="card-title")= "Wind"
+							p(class="card-text")= reading.windspeed.value.toString() + reading.windspeed.unit
 		div(class="col")
 			div(class="card")
-				div(class="card-body")
-					h5(class="card-title")= "Airpressure"
-					p(class="card-text")= reading.airpressure.value.toString() + reading.airpressure.unit
+				div(class="row g-0")
+					div(class="col col-md-auto ms-2 align-self-center")
+						svg(class="bi translate" width="40" height="40" fill="currentColor")
+							use(xlink:href="icons/bootstrap-icons.svg#speedometer")
+					div(class="col")
+						div(class="card-body")
+							h5(class="card-title")= "Airpressure"
+							p(class="card-text")= reading.airpressure.value.toString() + reading.airpressure.unit
 	
 mixin weatherstation_links (weatherstation_ID, is_weatherstation_view)
 	div(class="row")
