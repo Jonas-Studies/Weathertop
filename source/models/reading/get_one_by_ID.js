@@ -21,7 +21,9 @@ export default async function (ID) {
 				row.temperature_in_degrees, 
 				'°C', 
 				row.windspeed_in_kmh, 
-				'km/h', 
+				'km/h',
+				row.winddirection_in_degrees,
+				'°',
 				row.airpressure_in_hpa, 
 				'hpa', 
 				row.created_on
