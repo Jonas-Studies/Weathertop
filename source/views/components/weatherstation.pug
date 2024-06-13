@@ -1,0 +1,60 @@
+mixin weatherstation(weatherstation, is_weatherstation_view)
+	div(class="card")
+		div(class="card-header")
+			+weatherstation_headline(weatherstation.data)
+		if weatherstation.latest_reading
+			div(class="card-body")
+				+weatherstation_details(weatherstation.latest_reading)
+		div(class="card-footer color-border-black")
+			+weatherstation_links(weatherstation.data.ID, is_weatherstation_view)
+
+mixin weatherstation_headline(weatherstation_data)
+	div(class="row align-items-center")
+		div(class="col col-md-auto")
+			h4(class="card-title")= weatherstation_data.name
+		div(class="col col-md-auto")
+			p(class="card-text")= "Lat: " + weatherstation_data.latitude
+		div(class="col col-md-auto")
+			p(class="card-text")= "Lon: " + weatherstation_data.longitude
+
+mixin weatherstation_details(reading)
+	div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
+		div(class="col")
+			div(class="card")
+				div(class="card-body")
+					h5(class="card-title")= "Wetter"
+					p(class="card-text")= reading.weathercode.name
+		div(class="col")
+			div(class="card")
+				div(class="card-body")
+					h5(class="card-title")= "Temperatur"
+					p(class="card-text")= reading.temperature.value.toString() + reading.temperature.unit
+					
+		div(class="col")
+			div(class="card")
+				div(class="card-body")
+					h5(class="card-title")= "Wind"
+					p(class="card-text")= reading.windspeed.value.toString() + reading.windspeed.unit
+		div(class="col")
+			div(class="card")
+				div(class="card-body")
+					h5(class="card-title")= "Airpressure"
+					p(class="card-text")= reading.airpressure.value.toString() + reading.airpressure.unit
+	
+mixin weatherstation_links (weatherstation_ID, is_weatherstation_view)
+	div(class="row")
+		if is_weatherstation_view === true
+			div(class="col col-md-auto")
+				button(class="btn p-0" onclick="delete_weatherstation_by_id("+ weatherstation_ID + ", true)" )
+					svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#trash")
+		else
+			div(class="col col-md-auto")
+				a(href="/weatherstation?id="+weatherstation_ID)
+					svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#pencil-square")
+			div(class="col col-md-auto")
+				button(class="btn p-0" onclick="delete_weatherstation_by_id("+ weatherstation_ID + ", false)" )
+					svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#trash")
+	script(src="js/delete_weatherstation.js")

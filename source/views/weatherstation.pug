@@ -2,7 +2,7 @@ extends layouts/main.pug
 
 include components/navbar.pug
 include components/create_reading_form.pug
-include components/station.pug
+include components/weatherstation.pug
 include components/readings.pug
 
 block title
@@ -14,9 +14,9 @@ block content
 	section(class="container mt-4")
 		div(class="row row-cols-1 g-4")
 			div(class="col")
-				+station( weatherstation, true )
+				+ weatherstation( weatherstation, true )
 			div(class="col")
-				+create_reading_form(weathercodes)
+				+ create_reading_form( weathercodes )
 			div(class="col")
-				+readings( readings )
+				+ readings( readings )
 	div(id="weatherstation-ID" class="invisible")= weatherstation.data.ID
