@@ -24,7 +24,7 @@ mixin weatherstation_details(reading)
 				div(class="row g-0")
 					div(class="col col-md-auto ms-2 align-self-center")
 						svg(class="bi translate" width="40" height="40" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#cloud-lightning")
+							use(xlink:href="icons/bootstrap-icons.svg#" + reading.weathercode.icon_name)
 					div(class="col")
 						div(class="card-body")
 							h5(class="card-title")= "Wetter"

@@ -1,7 +1,8 @@
-export default function (key, name) {
+export default function (key, name, icon_name) {
 	const result = {
 		key: key,
-		name: name
+		name: name,
+		icon_name: icon_name
 	}
 
 	return result
