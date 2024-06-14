@@ -17,5 +17,8 @@ export default function () {
 		get_weathercode(801, 'Leicht bewölkt', 'cloud')
 	]
 
+	console.info('Loaded weathercodes')
+	console.debug(result)
+
 	return result
 }
