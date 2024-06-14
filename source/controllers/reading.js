@@ -15,7 +15,7 @@ export async function insert_one_new (request, response, next) {
 				request.body.weathercode,
 				request.body.temperature,
 				request.body.windspeed,
-				0,
+				request.body.winddirection,
 				request.body.airpressure
 			)
 

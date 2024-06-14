@@ -3,6 +3,7 @@ async function create_reading () {
 	const weathercode = get_weathercode_from_userinput()
 	const temperature = get_temperature_from_userinput()
 	const windspeed = get_windspeed_from_userinput()
+	const widdirection = get_winddirection_from_userinput()
 	const airpressure = get_airpressure_from_userinput()
 
 	await fetch("http://localhost:3000/reading/insert_one_new",
@@ -14,6 +15,7 @@ async function create_reading () {
 					weathercode: weathercode,
 					temperature: temperature,
 					windspeed: windspeed,
+					winddirection: widdirection,
 					airpressure: airpressure
 				}
 			),
@@ -79,6 +81,25 @@ function get_windspeed_from_userinput () {
 	}
 	else {
 		console.error("Could not load create-reading-input-windspeed")
+	}
+
+	return result
+}
+
+function get_winddirection_from_userinput () {
+	var result = undefined
+
+	const input = document.getElementById("create-reading-input-winddirection")
+
+	if (input) {
+		console.debug("Loaded create-reading-input-winddirection")
+
+		result = Number(input.value)
+
+		console.info("Loaded the winddirection " + result)
+	}
+	else {
+		console.error("Could not load create-reading-input-winddirection")
 	}
 
 	return result
