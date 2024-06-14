@@ -5,18 +5,21 @@ mixin create_reading_form (weathercodes)
 		section(class="card-body")
 			section(class="row")
 				section(class="col")
-					label(class="form-label" for="weathercode") Wetter
+					label(class="form-label" for="create-reading-selected-weathercode") Wetter
 					select(class="form-select" id="create-reading-selected-weathercode")
 						each weathercode in weathercodes
 							option(value=weathercode.key)= weathercode.name
 				section(class="col")
-					label(class="form-label" for="temperature") Temperatur
+					label(class="form-label" for="create-reading-input-temperature") Temperatur
 					input(class="form-control" id="create-reading-input-temperature" type="number")
 				section(class="col")
-					label(class="form-label" for="windspeed") Wind
+					label(class="form-label" for="create-reading-input-windspeed") Windspeed
 					input(class="form-control" id="create-reading-input-windspeed" type="number")
 				section(class="col")
-					label(class="form-label" for="airpressure") Luftdruck
+					label(class="form-label" for="create-reading-input-winddirection") Winddirection
+					input(class="form-control" id="create-reading-input-winddirection" type="number")
+				section(class="col")
+					label(class="form-label" for="create-reading-input-airpressure") Luftdruck
 					input(class="form-control" id="create-reading-input-airpressure" type="number")
 		footer(class="card-footer")
 			button(onclick="create_reading()" id="create-reading-button" class="btn btn-primary") Speichern
