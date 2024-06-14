@@ -8,11 +8,14 @@ export async function insert_one_new (request, response, next) {
 
 	if (request.session.key != undefined) {
 		if (await get_user_owns_weatherstation_by_weatherstation_ID(request.body.weatherstationID, request.session.key) != undefined) {
+			console.debug(request.body)
+
 			await insert_new_reading(
 				request.body.weatherstationID,
 				request.body.weathercode,
 				request.body.temperature,
 				request.body.windspeed,
+				0,
 				request.body.airpressure
 			)
 
