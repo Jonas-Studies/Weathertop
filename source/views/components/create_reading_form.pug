@@ -11,16 +11,24 @@ mixin create_reading_form (weathercodes)
 							option(value=weathercode.key)= weathercode.name
 				section(class="col")
 					label(class="form-label" for="create-reading-input-temperature") Temperatur
-					input(class="form-control" id="create-reading-input-temperature" type="number")
+					div(class="input-group")
+						input(class="form-control" id="create-reading-input-temperature" type="text")
+						div(class="input-group-text")= "°C"
 				section(class="col")
 					label(class="form-label" for="create-reading-input-windspeed") Windspeed
-					input(class="form-control" id="create-reading-input-windspeed" type="number")
+					div(class="input-group")
+						input(class="form-control" id="create-reading-input-windspeed" type="text")
+						div(class="input-group-text")= "km/h"
 				section(class="col")
-					label(class="form-label" for="create-reading-input-winddirection") Winddirection
-					input(class="form-control" id="create-reading-input-winddirection" type="number")
+					label(class="form-label" for="create-reading-input-winddirection") Windrichtung
+					div(class="input-group")
+						input(class="form-control" id="create-reading-input-winddirection" type="text")
+						div(class="input-group-text")= "°"
 				section(class="col")
 					label(class="form-label" for="create-reading-input-airpressure") Luftdruck
-					input(class="form-control" id="create-reading-input-airpressure" type="number")
+					div(class="input-group")
+						input(class="form-control" id="create-reading-input-airpressure" type="text")
+						div(class="input-group-text")= "hpa"
 		footer(class="card-footer")
 			button(onclick="create_reading()" id="create-reading-button" class="btn btn-primary") Speichern
 	script(src="js/create_reading_form.js")
