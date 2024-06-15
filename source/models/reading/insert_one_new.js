@@ -17,5 +17,5 @@ export default async function (weatherstation_ID, weathercode, temperature_in_de
 		undefined
 	)
 
-	insert_reading(new_reading)
+	await insert_reading(new_reading)
 }
