@@ -4,6 +4,8 @@ import get_hightest_temperature_by_weatherstation_ID from '../reading/get_highte
 import get_lowest_temperature_by_weatherstation_ID from '../reading/get_lowest_temperature_by_weatherstation_ID.js'
 import get_hightest_airpressure_by_weatherstation_ID from '../reading/get_hightest_airpressure_by_weatherstation_ID.js'
 import get_lowest_airpressure_by_weatherstation_ID from '../reading/get_lowest_airpressure_by_weatherstation_ID.js'
+import get_hightest_windspeed_by_weatherstation_ID from '../reading/get_hightest_windspeed_by_weatherstation_ID.js'
+import get_lowest_windspeed_by_weatherstation_ID from '../reading/get_lowest_windspeed_by_weatherstation_ID.js'
 
 export default async function (weatherstation_ID) {
 	var result = undefined
@@ -25,7 +27,9 @@ export default async function (weatherstation_ID) {
 			},
 			windspeed: {
 				value: latest_reading.windspeed,
-				unit: latest_reading.unit_of_windspeed
+				unit: latest_reading.unit_of_windspeed,
+				minvalue: await get_hightest_windspeed_by_weatherstation_ID(weatherstation_ID),
+				maxvalue: await get_lowest_windspeed_by_weatherstation_ID(weatherstation_ID)
 			},
 			winddirection: {
 				value: latest_reading.winddirection,
