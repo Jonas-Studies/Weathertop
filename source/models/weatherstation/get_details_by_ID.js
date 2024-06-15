@@ -2,6 +2,8 @@ import get_latest_reading_by_weatherstation_ID from '../reading/get_latest_one_b
 import get_weathercode_by_key from '../weathercode/get_one_by_key.js'
 import get_hightest_temperature_by_weatherstation_ID from '../reading/get_hightest_temperature_by_weatherstation_ID.js'
 import get_lowest_temperature_by_weatherstation_ID from '../reading/get_lowest_temperature_by_weatherstation_ID.js'
+import get_hightest_airpressure_by_weatherstation_ID from '../reading/get_hightest_airpressure_by_weatherstation_ID.js'
+import get_lowest_airpressure_by_weatherstation_ID from '../reading/get_lowest_airpressure_by_weatherstation_ID.js'
 
 export default async function (weatherstation_ID) {
 	var result = undefined
@@ -34,8 +36,8 @@ export default async function (weatherstation_ID) {
 			airpressure: {
 				value: latest_reading.airpressure,
 				unit: latest_reading.unit_of_airpressure,
-				minvalue: undefined,
-				maxvalue: undefined
+				minvalue: await get_hightest_airpressure_by_weatherstation_ID(weatherstation_ID),
+				maxvalue: await get_lowest_airpressure_by_weatherstation_ID(weatherstation_ID)
 			}
 		}
 	}
