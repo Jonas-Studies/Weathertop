@@ -1,5 +1,5 @@
-import get_weatherstations_by_user_ID from '../models/weatherstation_with_latest_reading/get_many_by_user_ID.js'
-import get_weatherstation_by_ID from '../models/weatherstation_with_latest_reading/get_one_by_weatherstation_ID.js'
+import get_weatherstations_with_details_by_user_ID from '../models/weatherstation/get_many_with_details_by_user_ID.js'
+import get_weatherstation_with_details_by_ID from '../models/weatherstation/get_one_with_details_by_ID.js'
 import get_readings_by_weatherstation_ID from '../models/reading/get_many_by_weatherstation_ID.js'
 import insert_new_weatherstation from '../models/weatherstation/insert_one_new.js'
 import delete_weatherstation_by_ID from '../models/weatherstation/delete_one_by_ID.js'
@@ -11,7 +11,7 @@ export async function display_many (request, response, next) {
 		response.redirect('/login')
 	}
 	else {
-		const weatherstations = await get_weatherstations_by_user_ID(request.session.key)
+		const weatherstations = await get_weatherstations_with_details_by_user_ID(request.session.key)
 
 		response.render('dashboard', { weatherstations: weatherstations } )
 	}
@@ -22,7 +22,7 @@ export async function display_one_by_ID (request, response, next) {
 		const weatherstation_id = request.query.id
 
 		if (await get_user_owns_weatherstation_by_weatherstation_ID(weatherstation_id, request.session.key) != undefined) {
-			const weatherstation = await get_weatherstation_by_ID(weatherstation_id)
+			const weatherstation = await get_weatherstation_with_details_by_ID(weatherstation_id)
 			const readings = await get_readings_by_weatherstation_ID(weatherstation_id)
 
 			const weathercodes = get_weathercodes()

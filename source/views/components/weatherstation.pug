@@ -2,9 +2,9 @@ mixin weatherstation(weatherstation, is_weatherstation_view)
 	div(class="card")
 		div(class="card-header")
 			+weatherstation_headline(weatherstation.data)
-		if weatherstation.latest_reading
+		if weatherstation.details
 			div(class="card-body")
-				+weatherstation_details(weatherstation.latest_reading)
+				+weatherstation_details(weatherstation.details)
 		div(class="card-footer color-border-black")
 			+weatherstation_links(weatherstation.data.ID, is_weatherstation_view)
 
@@ -17,50 +17,91 @@ mixin weatherstation_headline(weatherstation_data)
 		div(class="col col-md-auto")
 			p(class="card-text")= "Lon: " + weatherstation_data.longitude
 
-mixin weatherstation_details(reading)
+mixin weatherstation_details(details)
 	div(class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2")
 		div(class="col")
-			div(class="card")
-				div(class="row g-0")
-					div(class="col col-md-auto ms-2 align-self-center")
-						svg(class="bi translate" width="40" height="40" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#" + reading.weathercode.icon_name)
-					div(class="col")
-						div(class="card-body")
-							h5(class="card-title")= "Wetter"
-							p(class="card-text")= reading.weathercode.name
+			+ weatherstation_details_weather(details.weathercode)
 		div(class="col")
-			div(class="card")
-				div(class="row g-0")
-					div(class="col col-md-auto ms-2 align-self-center")
-						svg(class="bi translate" width="40" height="40" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#" + reading.temperature.icon_name)
-					div(class="col")
-						div(class="card-body")
-							h5(class="card-title")= "Temperatur"
-							p(class="card-text")= reading.temperature.value.toString() + reading.temperature.unit
-					
+			+ weatherstation_details_temperature(details.temperature)
 		div(class="col")
-			div(class="card")
-				div(class="row g-0")
-					div(class="col col-md-auto ms-2 align-self-center")
-						svg(class="bi translate" width="40" height="40" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#wind")
-					div(class="col")
-						div(class="card-body")
-							h5(class="card-title")= "Wind"
-							p(class="card-text")= reading.windspeed.value.toString() + reading.windspeed.unit
+			+ weatherstation_details_wind(details.windspeed, details.winddirection)
 		div(class="col")
-			div(class="card")
-				div(class="row g-0")
-					div(class="col col-md-auto ms-2 align-self-center")
-						svg(class="bi translate" width="40" height="40" fill="currentColor")
-							use(xlink:href="icons/bootstrap-icons.svg#speedometer")
-					div(class="col")
-						div(class="card-body")
-							h5(class="card-title")= "Airpressure"
-							p(class="card-text")= reading.airpressure.value.toString() + reading.airpressure.unit
-	
+			+ weatherstation_details_airpressure(details.airpressure)
+
+mixin weatherstation_details_weather (weathercode)
+	div(class="card")
+		div(class="row g-0")
+			div(class="col col-md-auto ms-2 align-self-center")
+				svg(class="bi translate" width="40" height="40" fill="currentColor")
+					use(xlink:href="icons/bootstrap-icons.svg#" + weathercode.icon_name)
+			div(class="col")
+				div(class="card-body")
+					h5(class="card-title")= "Wetter"
+					p(class="card-text")= weathercode.name
+
+mixin weatherstation_details_temperature (temperature)
+	div(class="card")
+		div(class="card-body")
+			div(class="row")
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#" + temperature.icon_name)
+				div(class="col")
+					h5(class="card-title")= "Temperatur"
+					p(class="card-text")= temperature.value + temperature.unit
+			div(class="row mt-2 pt-2 border-top")
+				div(class="col")
+					p(class="card-text")
+						span= "Min: "
+						span= temperature.minvalue
+						span= temperature.unit
+					p(class="card-text")
+						span= "Max: "
+						span= temperature.maxvalue
+						span= temperature.unit
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#arrow-down-left")
+
+mixin weatherstation_details_wind (windspeed, winddirection)
+	div(class="card")
+		div(class="card-body")
+			div(class="row")
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#wind")
+				div(class="col")
+					h5(class="card-title")= "Wind"
+					p(class="card-text")= windspeed.value + windspeed.unit
+			div(class="row mt-2 pt-2 border-top")
+				div(class="col")
+					p(class="card-title")= winddirection.text
+					p(class="card-text")= winddirection.value + winddirection.unit
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#arrow-down-left")
+
+mixin weatherstation_details_airpressure (airpressure)
+	div(class="card")
+		div(class="card-body")
+			div(class="row")
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="icons/bootstrap-icons.svg#speedometer")
+				div(class="col")
+					h5(class="card-title")= "Luftdruck"
+					p(class="card-text")= airpressure.value + airpressure.unit
+			div(class="row mt-2 pt-2 border-top")
+				div(class="col")
+					p(class="card-text")
+						span= "Min: "
+						span= airpressure.minvalue
+						span= airpressure.unit
+					p(class="card-text")
+						span= "Max: "
+						span= airpressure.maxvalue
+						span= airpressure.unit
+
 mixin weatherstation_links (weatherstation_ID, is_weatherstation_view)
 	div(class="row")
 		if is_weatherstation_view === true

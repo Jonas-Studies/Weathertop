@@ -1,25 +1,27 @@
 mixin readings (input_readings)
 	div(class="card")
 		div(class="card-header")
-			div(class="card-title") Messungen
+			h5(class="card-title")= "Messungen"
 		div(class="card-body")
 			table(class="table")
 				thead
 					tr
-						th(scope="col") Erstellzeitpunkt
-						th(scope="col") Wetter
-						th(scope="col") Temperatur
-						th(scope="col") Wind
-						th(scope="col") Luftdruck
+						th(scope="col")= "Erstellzeitpunkt"
+						th(scope="col")= "Wetter"
+						th(scope="col")= "Temperatur"
+						th(scope="col")= "Windgeschwindigkeit"
+						th(scope="col")= "Windrichtung"
+						th(scope="col")= "Luftdruck"
 						th(scope="col")
 				tbody
 					each reading in input_readings	
 						tr
-							td= reading.created_on.toUTCString()
-							td= reading.weathercode.name
-							td= reading.temperature.value
-							td= reading.windspeed.value
-							td= reading.airpressure.value
+							td= reading.created_on
+							td= reading.weathercode
+							td= reading.temperature
+							td= reading.windspeed
+							td= reading.winddirection
+							td= reading.airpressure
 							td
 								button(class="btn p-0" onclick="delete_reading_by_id('"+ reading.ID + "')" )
 									svg(class="bi text-primary" width="20" height="20" fill="currentColor")
