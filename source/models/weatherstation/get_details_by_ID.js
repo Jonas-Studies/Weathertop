@@ -1,35 +1,42 @@
 import get_latest_reading_by_weatherstation_ID from '../reading/get_latest_one_by_weatherstation_ID.js'
 import get_weathercode_by_key from '../weathercode/get_one_by_key.js'
+import get_hightest_temperature_by_weatherstation_ID from '../reading/get_hightest_temperature_by_weatherstation_ID.js'
+import get_lowest_temperature_by_weatherstation_ID from '../reading/get_lowest_temperature_by_weatherstation_ID.js'
 
 export default async function (weatherstation_ID) {
-	const latest_reading = await get_latest_reading_by_weatherstation_ID(weatherstation_ID)
-	const weathercode = get_weathercode_by_key(latest_reading.weathercode)
+	var result = undefined
 
-	const result = {
-		weathercode: weathercode,
-		temperature: {
-			value: latest_reading.temperature,
-			unit: latest_reading.unit_of_temperature,
-			icon_name: get_temperature_iconName_by_temperature(latest_reading.temperature),
-			minvalue: undefined,
-			maxvalue: undefined,
-			tendency_icon_name: undefined
-		},
-		windspeed: {
-			value: latest_reading.windspeed,
-			unit: latest_reading.unit_of_windspeed
-		},
-		winddirection: {
-			value: latest_reading.winddirection,
-			unit: latest_reading.unit_of_winddirection,
-			text: get_winddirection_as_text(latest_reading.winddirection),
-			icon_name: undefined
-		},
-		airpressure: {
-			value: latest_reading.airpressure,
-			unit: latest_reading.unit_of_airpressure,
-			minvalue: undefined,
-			maxvalue: undefined
+	const latest_reading = await get_latest_reading_by_weatherstation_ID(weatherstation_ID)
+
+	if (latest_reading != undefined) {
+		const weathercode = get_weathercode_by_key(latest_reading.weathercode)
+
+		result = {
+			weathercode: weathercode,
+			temperature: {
+				value: latest_reading.temperature,
+				unit: latest_reading.unit_of_temperature,
+				icon_name: get_temperature_iconName_by_temperature(latest_reading.temperature),
+				minvalue: await get_lowest_temperature_by_weatherstation_ID(weatherstation_ID),
+				maxvalue: await get_hightest_temperature_by_weatherstation_ID(weatherstation_ID),
+				tendency_icon_name: undefined
+			},
+			windspeed: {
+				value: latest_reading.windspeed,
+				unit: latest_reading.unit_of_windspeed
+			},
+			winddirection: {
+				value: latest_reading.winddirection,
+				unit: latest_reading.unit_of_winddirection,
+				text: get_winddirection_as_text(latest_reading.winddirection),
+				icon_name: undefined
+			},
+			airpressure: {
+				value: latest_reading.airpressure,
+				unit: latest_reading.unit_of_airpressure,
+				minvalue: undefined,
+				maxvalue: undefined
+			}
 		}
 	}
 
