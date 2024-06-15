@@ -28,8 +28,8 @@ export default async function (weatherstation_ID) {
 			windspeed: {
 				value: latest_reading.windspeed,
 				unit: latest_reading.unit_of_windspeed,
-				minvalue: await get_hightest_windspeed_by_weatherstation_ID(weatherstation_ID),
-				maxvalue: await get_lowest_windspeed_by_weatherstation_ID(weatherstation_ID)
+				minvalue: await get_lowest_windspeed_by_weatherstation_ID(weatherstation_ID),
+				maxvalue: await get_hightest_windspeed_by_weatherstation_ID(weatherstation_ID)
 			},
 			winddirection: {
 				value: latest_reading.winddirection,
@@ -40,8 +40,8 @@ export default async function (weatherstation_ID) {
 			airpressure: {
 				value: latest_reading.airpressure,
 				unit: latest_reading.unit_of_airpressure,
-				minvalue: await get_hightest_airpressure_by_weatherstation_ID(weatherstation_ID),
-				maxvalue: await get_lowest_airpressure_by_weatherstation_ID(weatherstation_ID)
+				minvalue: await get_lowest_airpressure_by_weatherstation_ID(weatherstation_ID),
+				maxvalue: await get_hightest_airpressure_by_weatherstation_ID(weatherstation_ID)
 			}
 		}
 	}
