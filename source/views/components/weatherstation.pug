@@ -91,6 +91,16 @@ mixin weatherstation_details_airpressure (airpressure)
 				div(class="col")
 					h5(class="card-title")= "Luftdruck"
 					p(class="card-text")= airpressure.value + airpressure.unit
+			div(class="row mt-2 pt-2 border-top")
+				div(class="col")
+					p(class="card-text")
+						span= "Min: "
+						span= airpressure.minvalue
+						span= airpressure.unit
+					p(class="card-text")
+						span= "Max: "
+						span= airpressure.maxvalue
+						span= airpressure.unit
 
 mixin weatherstation_links (weatherstation_ID, is_weatherstation_view)
 	div(class="row")
