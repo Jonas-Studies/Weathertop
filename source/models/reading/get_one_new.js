@@ -9,7 +9,7 @@ export default function (ID, weatherstation_ID, weathercode, temperature, unit_o
 		unit_of_temperature: unit_of_temperature,
 		windspeed: windspeed,
 		unit_of_windspeed: unit_of_windspeed,
-		widdirection: winddirection,
+		winddirection: winddirection,
 		unit_of_winddirection: unit_of_winddirection,
 		airpressure: airpressure,
 		unit_of_airpressure: unit_of_airpressure,
