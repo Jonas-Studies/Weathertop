@@ -19,7 +19,7 @@ export async function display_many (request, response, next) {
 
 export async function display_one_by_ID (request, response, next) {
 	if (request.session.key != undefined) {
-		const weatherstation_id = request.query.id
+		const weatherstation_id = request.params.weatherstationID
 
 		if (await get_user_owns_weatherstation_by_weatherstation_ID(weatherstation_id, request.session.key) != undefined) {
 			const weatherstation = await get_weatherstation_with_details_by_ID(weatherstation_id)
