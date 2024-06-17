@@ -23,6 +23,6 @@ router.post('/reading/insert_one_by_weatherstationid', reading.insert_one_from_o
 router.post('/reading/delete_one_by_id', reading.delete_one_by_ID)
 
 router.post('/user/insert_one_new', user.insert_one_new)
-router.get('/user/is_username_existing', user.is_name_existing)
+router.post('/user/is_username_existing', user.is_name_existing)
 
 export default router

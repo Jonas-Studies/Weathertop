@@ -19,7 +19,7 @@ export async function is_name_existing (request, response, next) {
 
 	var result = false
 
-	const username = request.query.username
+	const username = request.body.username
 
 	if (await get_user_by_name(username) != undefined) {
 		result = true
