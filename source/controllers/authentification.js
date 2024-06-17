@@ -18,7 +18,7 @@ export async function create_session (request, response, next) {
 
 	console.info('Recieved request to create session')
 
-	if (is_username_valid(username) === true && is_password_valid === true) {
+	if (is_username_valid(username) === true && is_password_valid(password) === true) {
 		const user = await get_user_by_credentials(username, password)
 
 		if (user != undefined) {
