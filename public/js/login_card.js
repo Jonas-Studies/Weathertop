@@ -52,14 +52,24 @@ function get_password_from_userinput () {
 }
 
 async function is_username_existing (name) {
-	var result = false
+	var result = false	
 
 	const response = await fetch(
-		"http://localhost:3000/user/is_username_existing?username=" + name,
-		{ method: "GET" }
+		"http://localhost:3000/user/is_username_existing",
+		{
+			method: "POST",
+			body: JSON.stringify(
+				{
+					username: name
+				}
+			),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+		}
 	)
 	
-	if (response.status = 200) {
+	if (response.status === 200) {
 		const data = await response.json()
 		result = data.result
 
@@ -81,8 +91,19 @@ async function login (username, password) {
 	var result = undefined
 
 	const response = await fetch (
-		"http://localhost:3000/login?username=" + username + "&password=" + password,
-		{ method: "POST" }
+		"http://localhost:3000/login",
+		{
+			method: "POST",
+			body: JSON.stringify(
+				{
+					username: username,
+					password: password
+				}
+			),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+		}
 	)
 
 	if (response.status = 200) {
