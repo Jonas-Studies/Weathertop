@@ -9,8 +9,8 @@ export async function display_registration_page (request, response, next) {
 }
 
 export async function create_session (request, response, next) {
-	const username = request.query.username
-	const password = request.query.password
+	const username = request.body.username
+	const password = request.body.password
 
 	var result = false
 
