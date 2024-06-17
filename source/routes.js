@@ -19,6 +19,7 @@ router.post('/weatherstation/insert_one_new', weatherstation.insert_one_new)
 router.post('/weatherstation/delete_one_by_id', weatherstation.delete_one_by_ID)
 
 router.post('/reading/insert_one_new', reading.insert_one_new)
+router.post('/reading/insert_one_by_weatherstationid', reading.insert_one_from_openweathermap)
 router.post('/reading/delete_one_by_id', reading.delete_one_by_ID)
 
 router.post('/user/insert_one_new', user.insert_one_new)

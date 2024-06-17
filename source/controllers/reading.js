@@ -1,7 +1,10 @@
 import insert_new_reading from '../models/reading/insert_one_new.js'
+import insert_reading from '../models/reading/insert_one.js'
 import delete_reading_by_ID from '../models/reading/delete_one_by_ID.js'
 import get_reading_by_ID from '../models/reading/get_one_by_ID.js'
 import get_user_owns_weatherstation_by_weatherstation_ID from '../models/user_owns_weatherstations/get_one_by_weatherstation_ID.js'
+import get_weatherstation_by_ID from '../models/weatherstation/get_one_by_ID.js'
+import get_current_reading_by_coordinates from '../models/reading/get_current_one_by_coordinates.js'
 
 export async function insert_one_new (request, response, next) {
 	var result = 401
@@ -23,6 +26,38 @@ export async function insert_one_new (request, response, next) {
 		}
 		else {
 			result = 400
+		}
+	}
+
+	response.sendStatus(result)
+}
+
+export async function insert_one_from_openweathermap (request, response, next) {
+	var result = 401
+
+	console.info('Recieved request to create automatic reading')
+
+	if (request.session.key != undefined) {
+		if (await get_user_owns_weatherstation_by_weatherstation_ID(request.body.weatherstationID, request.session.key) != undefined) {
+			const weatherstation = await get_weatherstation_by_ID(request.body.weatherstationID)
+			var reading = await get_current_reading_by_coordinates(weatherstation.latitude, weatherstation.longitude)
+
+			if (reading != undefined) {
+				reading.weatherstation_ID = weatherstation.ID
+
+				await insert_reading(reading)
+
+				result = 200
+
+			}
+
+			console.info('Created reading for weatherstation with data from openweathermap')
+			console.debug(reading)
+		}
+		else {
+			result = 400
+			
+			console.error('Could not create reading for weatherstation')
 		}
 	}
 
