@@ -28,6 +28,26 @@ async function create_reading () {
 	location.reload()
 }
 
+async function create_reading_automatic() {
+	const weatherstationID = get_weatherstationID_from_document()
+
+	await fetch("http://localhost:3000/reading/insert_one_by_weatherstationid",
+		{
+			method: "POST",
+			body: JSON.stringify(
+				{
+					weatherstationID: weatherstationID,
+				}
+			),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+		}
+	)
+	
+	location.reload()
+}
+
 function get_weathercode_from_userinput () {
 	var result = undefined
 

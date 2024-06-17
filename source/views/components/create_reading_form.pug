@@ -1,4 +1,4 @@
-mixin create_reading_form (weathercodes)
+mixin create_reading_form (weathercodes, weatherstation_ID)
 	div(class="card")
 		header(class="card-header")
 			h5 Hinzufügen Messung
@@ -30,5 +30,9 @@ mixin create_reading_form (weathercodes)
 						input(class="form-control" id="create-reading-input-airpressure" type="text" placeholder="0.00")
 						div(class="input-group-text")= "hpa"
 		footer(class="card-footer")
-			button(onclick="create_reading()" id="create-reading-button" class="btn btn-primary") Speichern
+			div(class="row g-3")
+				div(class="col col-md-auto")
+					button(onclick="create_reading()" id="create-reading-button" class="btn btn-primary") Speichern
+				div(class="col col-md-auto")
+					button(onclick="create_reading_automatic()" id="create-reading-button-auto" class="btn btn-secondary") Automatische Messung hinzufügen
 	script(src="js/create_reading_form.js")
