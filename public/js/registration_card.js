@@ -8,6 +8,8 @@ function register_user () {
 			fetch_registration_request(name, password)
 	
 			console.info("Registration completed")
+
+			location.href = "/login"
 		}
 		else {
 			console.error("Passwords need to be the same")
@@ -100,6 +102,4 @@ async function fetch_registration_request (name, password) {
 				}
 		}
 	)
-		.then((response) => console.info("Reading created"))
-		.then((error) => console.error(error))
 }
