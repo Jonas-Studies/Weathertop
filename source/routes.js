@@ -14,6 +14,7 @@ router.post('/login', authentification.create_session)
 router.get('/logout', authentification.destroy_session)
 
 router.get('/dashboard', weatherstation.display_many)
+router.get('/weatherstation/get_many', weatherstation.get_many)
 router.get('/weatherstation/:weatherstationID', weatherstation.display_one_by_ID)
 router.post('/weatherstation/insert_one_new', weatherstation.insert_one_new)
 router.post('/weatherstation/delete_one_by_id', weatherstation.delete_one_by_ID)

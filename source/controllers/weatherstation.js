@@ -1,3 +1,4 @@
+import get_weatherstations_by_user_ID from '../models/weatherstation/get_many_by_user_ID.js'
 import get_weatherstations_with_details_by_user_ID from '../models/weatherstation/get_many_with_details_by_user_ID.js'
 import get_weatherstation_with_details_by_ID from '../models/weatherstation/get_one_with_details_by_ID.js'
 import get_readings_by_weatherstation_ID from '../models/reading/get_many_by_weatherstation_ID.js'
@@ -113,4 +114,26 @@ export async function delete_one_by_ID (request, response, next) {
 	}
 
 	response.sendStatus(result)
+}
+
+export async function get_many (request, response, next) {
+	let status = 400
+	let result = []
+
+	const user_ID = request.session.key
+
+	if (user_ID != undefined) {
+		result = await get_weatherstations_by_user_ID(user_ID)
+
+		status = 200
+	}
+	else {
+		console.error('Request is not authenticated')
+
+		status = 401
+	}
+
+	console.debug('Recieved request to get weatherstations')
+
+	response.status(status).json( { weatherstations: result } )
 }
