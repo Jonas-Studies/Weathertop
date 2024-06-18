@@ -3,27 +3,28 @@ mixin readings (input_readings)
 		div(class="card-header")
 			h5(class="card-title")= "Messungen"
 		div(class="card-body")
-			table(class="table")
-				thead
-					tr
-						th(scope="col")= "Erstellzeitpunkt"
-						th(scope="col")= "Wetter"
-						th(scope="col")= "Temperatur"
-						th(scope="col")= "Windgeschwindigkeit"
-						th(scope="col")= "Windrichtung"
-						th(scope="col")= "Luftdruck"
-						th(scope="col")
-				tbody
-					each reading in input_readings	
+			div(class="table-responsive")
+				table(class="table")
+					thead
 						tr
-							td= reading.created_on
-							td= reading.weathercode
-							td= reading.temperature
-							td= reading.windspeed
-							td= reading.winddirection
-							td= reading.airpressure
-							td
-								button(class="btn p-0" onclick="delete_reading_by_id('"+ reading.ID + "')" )
-									svg(class="bi text-primary" width="20" height="20" fill="currentColor")
-										use(xlink:href="/icons/bootstrap-icons.svg#trash")
-		script(src="/js/delete_reading.js")
+							th(scope="col")= "Erstellzeitpunkt"
+							th(scope="col")= "Wetter"
+							th(scope="col")= "Temperatur"
+							th(scope="col")= "Windgeschwindigkeit"
+							th(scope="col")= "Windrichtung"
+							th(scope="col")= "Luftdruck"
+							th(scope="col")
+					tbody
+						each reading in input_readings	
+							tr
+								td= reading.created_on
+								td= reading.weathercode
+								td= reading.temperature
+								td= reading.windspeed
+								td= reading.winddirection
+								td= reading.airpressure
+								td
+									button(class="btn p-0" onclick="delete_reading_by_id('"+ reading.ID + "')" )
+										svg(class="bi text-primary" width="20" height="20" fill="currentColor")
+											use(xlink:href="/icons/bootstrap-icons.svg#trash")
+	script(src="/js/delete_reading.js")
