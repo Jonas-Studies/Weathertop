@@ -1,31 +1,46 @@
-async function create_reading () {
+async function init_create_reading_form () {
+	const form = document.querySelector('form')
+
+	form.addEventListener('submit', create_reading)
+}
+
+async function create_reading (submit_event) {
+	submit_event.preventDefault()
+
 	const weatherstationID = get_weatherstationID_from_document()
 	const weathercode = get_weathercode_from_userinput()
 	const temperature = get_temperature_from_userinput()
 	const windspeed = get_windspeed_from_userinput()
-	const widdirection = get_winddirection_from_userinput()
+	const winddirection = get_winddirection_from_userinput()
 	const airpressure = get_airpressure_from_userinput()
 
-	await fetch("http://localhost:3000/reading/insert_one_new",
-		{
-			method: "POST",
-			body: JSON.stringify(
-				{
-					weatherstationID: weatherstationID,
-					weathercode: weathercode,
-					temperature: temperature,
-					windspeed: windspeed,
-					winddirection: widdirection,
-					airpressure: airpressure
+	if (weatherstationID != undefined && weathercode != undefined && temperature != undefined && temperature != undefined && windspeed != undefined && winddirection != undefined && airpressure != undefined) {
+		await fetch("http://localhost:3000/reading/insert_one_new",
+			{
+				method: "POST",
+				body: JSON.stringify(
+					{
+						weatherstationID: weatherstationID,
+						weathercode: weathercode,
+						temperature: temperature,
+						windspeed: windspeed,
+						winddirection: winddirection,
+						airpressure: airpressure
+					}
+				),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
 				}
-			),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8"
 			}
-		}
-	)
-	
-	location.reload()
+		)
+
+		console.info('Created reading')
+		
+		location.reload()
+	}
+	else {
+		console.error('Failed to create reading')
+	}
 }
 
 async function create_reading_automatic() {
