@@ -16,7 +16,7 @@ export default async function (latitude, longitude) {
 			weather.weather[0].id,
 			(weather.main.temp),
 			'°C',
-			(weather.wind.speed * 3.6),
+			(weather.wind.speed * 3.6).toFixed(2),
 			'km/h',
 			weather.wind.deg,
 			'°',
