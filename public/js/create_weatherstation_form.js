@@ -1,5 +1,9 @@
 async function init_create_weatherstation_form () {
 	window.addEventListener('load', set_map)
+
+	const form = document.querySelector('form')
+
+	form.addEventListener('submit', create_weatherstation)
 }
 
 async function set_map () {
@@ -69,7 +73,7 @@ function set_latitude (latitude) {
 	const input = document.getElementById(ELEMENT_NAME)
 
 	if (input != undefined) {
-		input.value = latitude
+		input.value = latitude.toFixed(6)
 	}
 }
 
@@ -85,12 +89,14 @@ function set_longitude (longitude) {
 	const input = document.getElementById(ELEMENT_NAME)
 
 	if (input != undefined) {
-		input.value = longitude
+		input.value = longitude.toFixed(6)
 	}
 }
 
 
-async function create_weatherstation () {
+async function create_weatherstation (submit_event) {
+	submit_event.preventDefault()
+
 	const name = get_weatherstationName_by_userinput()
 	const latitude = get_weatherstationLatitude_by_userinput()
 	const longitude = get_weatherstationLongitude_by_userinput()
