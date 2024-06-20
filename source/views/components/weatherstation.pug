@@ -83,10 +83,12 @@ mixin weatherstation_details_wind (windspeed, winddirection)
 						span= "Max: "
 						span= windspeed.maxvalue
 						span= windspeed.unit
-					p(class="card-text")= winddirection.value + winddirection.unit + " " + winddirection.text
 				div(class="col col-md-auto align-self-center")
 					svg(class="bi translate" width="40" height="40" fill="currentColor")
 						use(xlink:href="/icons/bootstrap-icons.svg#" + windspeed.tendency_icon_name)
+			div(class="row mt-3")
+				div(class="col")
+					p(class="card-text")= winddirection.value + winddirection.unit + " " + winddirection.text
 
 mixin weatherstation_details_airpressure (airpressure)
 	div(class="card h-100")
