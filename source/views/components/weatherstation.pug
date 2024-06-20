@@ -61,7 +61,7 @@ mixin weatherstation_details_temperature (temperature)
 						span= temperature.unit
 				div(class="col col-md-auto align-self-center")
 					svg(class="bi translate" width="40" height="40" fill="currentColor")
-						use(xlink:href="/icons/bootstrap-icons.svg#arrow-down-left")
+						use(xlink:href="/icons/bootstrap-icons.svg#" + temperature.tendency_icon_name)
 
 mixin weatherstation_details_wind (windspeed, winddirection)
 	div(class="card h-100")
@@ -84,6 +84,9 @@ mixin weatherstation_details_wind (windspeed, winddirection)
 						span= windspeed.maxvalue
 						span= windspeed.unit
 					p(class="card-text")= winddirection.value + winddirection.unit + " " + winddirection.text
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="/icons/bootstrap-icons.svg#" + windspeed.tendency_icon_name)
 
 mixin weatherstation_details_airpressure (airpressure)
 	div(class="card h-100")
@@ -105,6 +108,9 @@ mixin weatherstation_details_airpressure (airpressure)
 						span= "Max: "
 						span= airpressure.maxvalue
 						span= airpressure.unit
+				div(class="col col-md-auto align-self-center")
+					svg(class="bi translate" width="40" height="40" fill="currentColor")
+						use(xlink:href="/icons/bootstrap-icons.svg#" + airpressure.tendency_icon_name)
 
 mixin weatherstation_links (weatherstation_ID, is_weatherstation_view)
 	div(class="row align-items-center")
