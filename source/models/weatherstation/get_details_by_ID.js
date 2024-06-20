@@ -6,6 +6,9 @@ import get_hightest_airpressure_by_weatherstation_ID from '../reading/get_highte
 import get_lowest_airpressure_by_weatherstation_ID from '../reading/get_lowest_airpressure_by_weatherstation_ID.js'
 import get_hightest_windspeed_by_weatherstation_ID from '../reading/get_hightest_windspeed_by_weatherstation_ID.js'
 import get_lowest_windspeed_by_weatherstation_ID from '../reading/get_lowest_windspeed_by_weatherstation_ID.js'
+import get_temperatures_tendency_by_weatherstation_ID from '../reading/get_temperature_tendency_by_weatherstation_ID.js'
+import get_windspeeds_tendency_by_weatherstation_ID from '../reading/get_windspeed_tendency_by_weatherstation_ID.js'
+import get_airpressures_tendency_by_weatherstation_ID from '../reading/get_airpressure_tendency_by_weatherstation_ID.js'
 
 export default async function (weatherstation_ID) {
 	var result = undefined
@@ -14,6 +17,9 @@ export default async function (weatherstation_ID) {
 
 	if (latest_reading != undefined) {
 		const weathercode = get_weathercode_by_key(latest_reading.weathercode)
+		const temperature_tendency = await get_temperatures_tendency_by_weatherstation_ID(weatherstation_ID)
+		const windspeed_tendency = await get_windspeeds_tendency_by_weatherstation_ID(weatherstation_ID)
+		const airpressure_tendency = await get_airpressures_tendency_by_weatherstation_ID(weatherstation_ID)
 
 		result = {
 			weathercode: weathercode,
@@ -23,13 +29,14 @@ export default async function (weatherstation_ID) {
 				icon_name: get_temperature_iconName_by_temperature(latest_reading.temperature),
 				minvalue: await get_lowest_temperature_by_weatherstation_ID(weatherstation_ID),
 				maxvalue: await get_hightest_temperature_by_weatherstation_ID(weatherstation_ID),
-				tendency_icon_name: undefined
+				tendency_icon_name: get_iconName_by_tendency(temperature_tendency)
 			},
 			windspeed: {
 				value: latest_reading.windspeed,
 				unit: latest_reading.unit_of_windspeed,
 				minvalue: await get_lowest_windspeed_by_weatherstation_ID(weatherstation_ID),
-				maxvalue: await get_hightest_windspeed_by_weatherstation_ID(weatherstation_ID)
+				maxvalue: await get_hightest_windspeed_by_weatherstation_ID(weatherstation_ID),
+				tendency_icon_name: get_iconName_by_tendency(windspeed_tendency)
 			},
 			winddirection: {
 				value: latest_reading.winddirection,
@@ -41,7 +48,8 @@ export default async function (weatherstation_ID) {
 				value: latest_reading.airpressure,
 				unit: latest_reading.unit_of_airpressure,
 				minvalue: await get_lowest_airpressure_by_weatherstation_ID(weatherstation_ID),
-				maxvalue: await get_hightest_airpressure_by_weatherstation_ID(weatherstation_ID)
+				maxvalue: await get_hightest_airpressure_by_weatherstation_ID(weatherstation_ID),
+				tendency_icon_name: get_iconName_by_tendency(airpressure_tendency)
 			}
 		}
 	}
@@ -106,4 +114,21 @@ function get_winddirection_as_text (winddirection) {
 	}
 
 	return result
-}	
+}
+
+function get_iconName_by_tendency (tendency) {
+	let result = 'arrow-right'
+
+	const TENDENCY_RANGE = 0.1
+
+	if (tendency > TENDENCY_RANGE) {
+		result = 'arrow-up-right'
+	}
+	else {
+		if (tendency < TENDENCY_RANGE) {
+			result = 'arrow-down-right'
+		}
+	}
+
+	return result
+}
