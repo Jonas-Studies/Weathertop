@@ -17,8 +17,8 @@ mixin readings (input_readings)
 					tbody
 						each reading in input_readings	
 							tr
-								td= reading.created_on
-								td= reading.weathercode
+								td= reading.created_on_text
+								td= reading.weathercode_text
 								td= reading.temperature
 								td= reading.windspeed
 								td= reading.winddirection
