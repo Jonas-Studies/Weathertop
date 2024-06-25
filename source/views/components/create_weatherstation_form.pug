@@ -1,5 +1,5 @@
 mixin create_weatherstation_form (weatherstations)
-	div(class="card")
+	div(class="card shadow-sm")
 		form
 			header(class="card-header")
 				h4(class="card-title") Hinzufügen Wetterstation
@@ -20,5 +20,5 @@ mixin create_weatherstation_form (weatherstations)
 			footer(class="card-footer")
 				section(class="row")
 					section(class="col")
-						button(id="create-weatherstation-button" type="submit" class="btn btn-primary") Speichern
+						button(id="create-weatherstation-button" type="submit" class="btn btn-primary shadow-sm") Speichern
 	script(src="/js/create_weatherstation_form.js" onload="init_create_weatherstation_form()")
