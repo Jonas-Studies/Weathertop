@@ -119,15 +119,14 @@ function get_winddirection_as_text (winddirection) {
 function get_iconName_by_tendency (tendency) {
 	let result = 'arrow-right'
 
-	const TENDENCY_RANGE = 0.1
+	const TENDENCY_RANGE = 0.3
 
 	if (tendency > TENDENCY_RANGE) {
 		result = 'arrow-up-right'
 	}
-	else {
-		if (tendency < TENDENCY_RANGE) {
-			result = 'arrow-down-right'
-		}
+
+	if (tendency < (-1 * TENDENCY_RANGE)) {
+		result = 'arrow-down-right'
 	}
 
 	return result
