@@ -11,19 +11,19 @@ WeatherTop is a platform designed to help users define weather stations by their
 - **Data Accuracy**: Ensure high accuracy and reliability of your weather data with precise input fields and validation.
 
 ## Started
+Note: This software requires to be connected to the OTH-Regensburg VPN.
 To get started with WeatherTop, follow these steps:
 1. **Clone the Repository**: 
     ```sh
-    git clone https://github.com/yourusername/WeatherTop.git
+    git clone https://github.com/OTHRegensburgMedieninformatik/studienleistung-mi-weathertop-medieninformatik-sose-24-Jonas-Studies
     ```
-2. **Install Dependencies**: 
+2. **Install Dependencies inside project folder**: 
     ```sh
-    cd WeatherTop
     npm install
     ```
 3. **Run the Application**: 
     ```sh
-    npm start
+    node ./app.js
     ```
 
 ## For Developers
