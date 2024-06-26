@@ -4,13 +4,18 @@ async function register_user () {
 	const repeatedPassword = get_repeatedPassword_from_userinput()
 
 	if (name != undefined && password != undefined && repeatedPassword != undefined) {
-		if (password === repeatedPassword) {
-			await fetch_registration_request(name, password)
-	
-			location.href = "/login"
+		if (await is_username_existing(name) === false) {
+			if (password === repeatedPassword) {
+				await fetch_registration_request(name, password)
+		
+				location.href = "/login"
+			}
+			else {
+				console.error("Passwords need to be the same")
+			}
 		}
 		else {
-			console.error("Passwords need to be the same")
+			alert("Username already exists")
 		}
 	}
 	else {
@@ -79,6 +84,42 @@ function get_repeatedPassword_from_userinput () {
 	}
 	else {
 		console.debug("Failed to load a repeated password")
+	}
+
+	return result
+}
+
+async function is_username_existing (name) {
+	var result = false	
+
+	const response = await fetch(
+		"http://localhost:3000/user/is_username_existing",
+		{
+			method: "POST",
+			body: JSON.stringify(
+				{
+					username: name
+				}
+			),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+		}
+	)
+	
+	if (response.status === 200) {
+		const data = await response.json()
+		result = data.result
+
+		if (data.result = true) {
+			console.info("Username is existing")
+		}
+		else {
+			console.info("Username is not existing")
+		}
+	}
+	else {
+		console.error("Failed to request if username is existing")
 	}
 
 	return result
