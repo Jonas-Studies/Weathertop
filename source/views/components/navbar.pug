@@ -1,8 +1,14 @@
-mixin navbar (links)
+mixin navbar (links, user)
 	div(class="navbar navbar-expand border-bottom shadow")
 		div(class="container-fluid")
-			a(class="navbar-brand" href="/") WeatherTop
+			a(class="navbar-brand" href="/")= "WeatherTop"
 			ul(class="navbar-nav")
 				each link in links
 					li(class="nav-item")
 						a(class="nav-link" href=link.url)= link.name
+				if user
+					div(class="border")
+					li(class="nav-item")
+						span(class="nav-link")= "Moin " + user + "!"
+					li(class="nav-item")
+						a(class="nav-link" href="/logout")= "Logout"
