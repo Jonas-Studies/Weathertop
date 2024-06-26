@@ -13,7 +13,7 @@ WeatherTop is a platform designed to help users define weather stations by their
 - **User-Friendly Interface**: Create your readings automatically with only one button through our integrated OpenWeatherMap API.
 - **Data Accuracy**: Ensure high accuracy and reliability of your weather data with precise input fields and validation.
 
-## Started
+## Getting started
 Note: This software requires a connection to the OTH-Regensburg VPN.
 To get started with WeatherTop, follow these steps:
 1. **Clone the Repository**: 
