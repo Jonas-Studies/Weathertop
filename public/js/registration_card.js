@@ -1,14 +1,12 @@
-function register_user () {
+async function register_user () {
 	const name = get_name_from_userinput()
 	const password = get_password_from_userinput()
 	const repeatedPassword = get_repeatedPassword_from_userinput()
 
 	if (name != undefined && password != undefined && repeatedPassword != undefined) {
 		if (password === repeatedPassword) {
-			fetch_registration_request(name, password)
+			await fetch_registration_request(name, password)
 	
-			console.info("Registration completed")
-
 			location.href = "/login"
 		}
 		else {
@@ -87,7 +85,7 @@ function get_repeatedPassword_from_userinput () {
 }
 
 async function fetch_registration_request (name, password) {
-	await fetch(
+	const response = await fetch(
 		"http://localhost:3000/user/insert_one_new",
 		{
 			method: "POST",
@@ -102,4 +100,11 @@ async function fetch_registration_request (name, password) {
 				}
 		}
 	)
+
+	if (response.status === 200) {
+		console.info("Registration completed!")
+	}
+	else {
+		console.error("Registration failed")
+	}
 }
