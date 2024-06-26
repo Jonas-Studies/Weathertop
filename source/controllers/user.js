@@ -12,12 +12,20 @@ export async function insert_one_new (request, response, next) {
 	let result = 400
 
 	if (is_username_valid(username) === true && is_password_valid(password) === true) {
-		await insert_new_user(
-			request.body.name,
-			request.body.password,
-		)
+		if (get_user_by_name != undefined) {
+			await insert_new_user(
+				username,
+				password
+			)
 
-		result = 200
+			console.info('Registrated new user')
+
+			result = 200
+		}
+		else {
+			console.error('User for registration already exists')
+			console.debug(username)
+		}
 	}
 	else {
 		console.error('Invalid parameters for request')
