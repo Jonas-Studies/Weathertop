@@ -1,7 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/VFFxQDoy)
 
-<! -- The following texts are written using the help of AI, do not judge me my grammar is shit. -->
-
 # WeatherTop
 ## Introduction
 WeatherTop is a platform designed to help users define weather stations by their precise geographical coordinates (latitude and longitude) and create detailed weather readings for these stations. Whether you're a weather enthusiast, a researcher, or someone who needs accurate weather data, WeatherTop offers an intuitive and reliable way to track and record weather conditions.
